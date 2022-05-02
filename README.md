@@ -1,6 +1,10 @@
 # QuanLyDiemHocVien
 
 [File Word](https://docs.google.com/document/d/1FWBwxTRQcKIhyut788_8H98YSkzhseFZWgXEImOc9ag/edit?usp=sharing)
+[ERD](https://drive.google.com/file/d/188AwsRL-o4Ny8g720pagM5M7IZxW-cQs/view?usp=sharing)
+
+
+
 
 ## Đối tượng sử dụng 
 - Quản trị viên
