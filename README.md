@@ -6,14 +6,14 @@
 - Quản trị viên
 - Người dùng(học viên, giáo viên, nhân viên(trợ giảng,...))
 ## Chức năng từng đối tượng:
-- Quản trị viên	
+- Quản trị viên:
 	+ Quản lý trang thông tin: banner,..
 - Quản lý người dùng:
 	+ Người dùng
 		- Học viên
 		    	+ xem điểm thi: các kỳ đã/ đang học
 		    	+ xem danh sách các môn học: tất cả các môn của ngành học
-		    	+ (xem danh sách các lớp, sinh viên trong lớp đó)
+		    	+ xem danh sách các lớp, sinh viên trong lớp đó
 		- Giáo viên
 			+ Nhập điểm: lớp đang phụ trách giảng dạy
 			+ Xem thông tin tất cả các sinh viên (thông qua maSV): tên,địa chỉ, điểm...
