@@ -11,18 +11,18 @@
 - Quản lý người dùng:
 	+ Người dùng
 		- Học viên:
-		    : xem điểm thi: các kỳ đã/ đang học
-			: xem danh sách các môn học: tất cả các môn của ngành học
-			: (xem danh sách các lớp, sinh viên trong lớp đó)
+		    	+ xem điểm thi: các kỳ đã/ đang học
+		    	+ xem danh sách các môn học: tất cả các môn của ngành học
+		    	+ (xem danh sách các lớp, sinh viên trong lớp đó)
 		- Giáo viên
-			: Nhập điểm: lớp đang phụ trách giảng dạy
-			: Xem thông tin tất cả các sinh viên (thông qua maSV): tên,địa chỉ, điểm...
-			: xem danh sách các lớp, sinh viên trong lớp đó, điểm thi
+			+ Nhập điểm: lớp đang phụ trách giảng dạy
+			+ Xem thông tin tất cả các sinh viên (thông qua maSV): tên,địa chỉ, điểm...
+			+ xem danh sách các lớp, sinh viên trong lớp đó, điểm thi
 		 - Nhân viên:
-			: Quản lý diểm thi
-			: Đăng bài thông báo: (news) thông báo đã có điểm thi....
-			: Quản lý danh sách các môn học: từng ngành, kỳ
-			: 
+			+ Quản lý diểm thi
+			+ Đăng bài thông báo: (news) thông báo đã có điểm thi....
+			+ Quản lý danh sách các môn học: từng ngành, kỳ
+			+ 
 ## Phân tích chức năng
 ### Học viên
 	+ Xem điểm thi(học viên):
