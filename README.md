@@ -10,7 +10,7 @@
 	+ Quản lý trang thông tin: banner,..
 - Quản lý người dùng:
 	+ Người dùng
-		- Học viên:
+		- Học viên
 		    	+ xem điểm thi: các kỳ đã/ đang học
 		    	+ xem danh sách các môn học: tất cả các môn của ngành học
 		    	+ (xem danh sách các lớp, sinh viên trong lớp đó)
