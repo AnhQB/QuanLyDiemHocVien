@@ -9,10 +9,12 @@
 
 ## Đối tượng sử dụng 
 - Quản trị viên
-- Người dùng(học viên, giáo viên, nhân viên(trợ giảng,...))
+- Người dùng(học viên, giáo viên)
 ## Chức năng từng đối tượng:
 - Quản trị viên:
 	+ Quản lý trang thông tin: banner,..
+	+ Quản lý diểm thi
+	+ Quản lý danh sách các môn học: từng ngành, kỳ
 - Quản lý người dùng:
 	+ Người dùng
 		- Học viên
@@ -23,11 +25,6 @@
 			+ Nhập điểm: lớp đang phụ trách giảng dạy
 			+ Xem thông tin tất cả các sinh viên (thông qua maSV): tên,địa chỉ, điểm...
 			+ xem danh sách các lớp, sinh viên trong lớp đó, điểm thi
-		 - Nhân viên:
-			+ Quản lý diểm thi
-			+ Đăng bài thông báo: (news) thông báo đã có điểm thi....
-			+ Quản lý danh sách các môn học: từng ngành, kỳ
-			+ 
 ## Phân tích chức năng
 ### Học viên
 	+ Xem điểm thi(học viên):
@@ -66,4 +63,3 @@
 			: Hiển thị các khóa học viên(đang học), các ngành(2 ngành trong để tài)
 			: Chọn ngành để hiện thị các lớp của ngành đó
 			: Chọn lớp để hiện thị danh sách các sinh viên lớp đó
-### Nhân viên:
