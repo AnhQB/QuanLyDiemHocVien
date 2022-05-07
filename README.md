@@ -63,3 +63,10 @@
 			: Hiển thị các khóa học viên(đang học), các ngành(2 ngành trong để tài)
 			: Chọn ngành để hiện thị các lớp của ngành đó
 			: Chọn lớp để hiện thị danh sách các sinh viên lớp đó
+	- Thống kê bảng điểm theo lớp của từng môn:
+		+ Kích hoạt
+			: ấn vào ""
+		+ Trình tự xử lý
+			: Chuyển trang
+			: Lọc theo môn -> hiển thị ra đồ thị điểm của từng lớp (x: điểm , y: lớp)
+			: ...
