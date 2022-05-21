@@ -10,7 +10,7 @@
 
 ## Đối tượng sử dụng 
 - Quản trị viên
-- Người dùng(học viên, giáo viên, giáo vụ)
+- Người dùng(học viên, giáo vụ)
 ## Chức năng từng đối tượng:
 - Quản trị viên:
 	+ Quản lý trang thông tin: banner,..
@@ -18,12 +18,9 @@
 - Quản lý người dùng:
 	+ Người dùng
 		- Học viên
-			+ xem điểm thi: các kỳ đã/ đang học
-			+ xem danh sách các môn học: tất cả các môn của ngành học
-			+ (xem danh sách các lớp, sinh viên trong lớp đó)
-		- Giáo viên
-			+ Xem thông tin tất cả các sinh viên (thông qua maSV): tên,địa chỉ, điểm...
-			+ xem danh sách các lớp, sinh viên trong lớp đó, điểm thi
+			+ Xem điểm thi: hiển thị các kỳ đã/ đang học, mỗi kỳ hiển thị danh sách các môn của kỳ đó
+			+ Xem khung chương trình các môn học: tất cả các môn của ngành học
+			+ Xem danh sách các lớp, thông tin sinh viên trong lớp đó (mã sinh viên, ảnh, họ tên)
 		- Giáo vụ
 		    + Quản lý khóa
 		    + Quản lý ngành
@@ -47,33 +44,31 @@
 		- Trình tự xử lý:
 		   	: chuyển trang
 			: Hiển thị khung chương trình học theo mã ngành học(mã môn, tên,kỳ)
-	
-### Giáo viên
-	- Xem thông tin tất cả các sinh viên:
-		+ Kích hoạt
-		    : nhập "Mã SV vào ô tìm kiếm"
-		+ Trình tự xử lý:
-			:	.....
-	- Xem danh sách các lớp:
-		+ Kích hoạt
-		    : ấn vào "Danh sách các lớp"
-		+ Trình tự xử lý:
-			: Chuyển trang
-			: Hiển thị các khóa học viên(đang học), các ngành(2 ngành trong để tài)
-			: Chọn ngành để hiện thị các lớp của ngành đó
-			: Chọn lớp để hiện thị danh sách các sinh viên lớp đó
-	- Thống kê bảng điểm theo lớp của từng môn:
-		+ Kích hoạt
-			: ấn vào ""
-		+ Trình tự xử lý
-			: Chuyển trang
-			: Lọc theo môn -> hiển thị ra đồ thị điểm của từng lớp (x: điểm , y: lớp)
-			: ...
+    + Xem danh sách các môn đang học 
+        - Kích hoạt: 
+            : ấn vào “các môn đang học”
+        - Trình tự xử lý:
+            : Chuyển trang
+            : Hiển thị các môn đang học trong kỳ này
+
 ### Giáo vụ
+    - Tạo khung chương trình các ngành thuộc mỗi khóa
+        + Kích hoạt
+        + Trình tự xử lý:
+            : Nhập ngành
+            : Nhập môn
+    - Sắp xếp lịch sinh viên:
+        + Trình tự xử lý:
+            : Nhập Khóa
+            : Nhập Lớp
+            : Nhập sinh viên
     - Nhập điểm:
 		+ Kích hoạt
 		    : ấn vào "Nhập điểm"
 		+ Trình tự xử lý:
-			: chuyển sang trang nhập điểm
-			: ấn vào từng lớp để nhập điểm
-			: không biết đọc điểm từ file được không
+            : chuyển sang trang nhập điểm
+            : chọn khóa
+            : chọn ngành
+            : chọn lớp (tích chọn vào các lớp)
+            : chọn môn 
+            : gửi file điểm()
