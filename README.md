@@ -31,44 +31,44 @@
 		    + Quản lý điểm
 ## Phân tích chức năng
 ### Học viên
-	+ Xem điểm thi(học viên):
-		- Kích hoạt
-		   : Học viên ấn vào "Xem điểm thi"
-		- Trình tự xử lý:
-			: chuyển sang trang xem điểm
-			: in ra danh sách các kỳ, các môn học của kỳ (mặc định in ra các kỳ đang học trước)
-			: học viên ấn vào từng môn để xem điểm chi tiết 
-	+ Xem danh sach các môn học
-		- Kích hoạt: 
-		    : ấn vào "Khung chương trình"
-		- Trình tự xử lý:
-		   	: chuyển trang
-			: Hiển thị khung chương trình học theo mã ngành học(mã môn, tên,kỳ)
-    + Xem danh sách các môn đang học 
-        - Kích hoạt: 
-            : ấn vào “các môn đang học”
-        - Trình tự xử lý:
-            : Chuyển trang
-            : Hiển thị các môn đang học trong kỳ này
+    i Xem điểm thi(học viên):
+		1 Kích hoạt
+		    a Học viên ấn vào "Xem điểm thi"
+		2 Trình tự xử lý:
+		    b chuyển sang trang xem điểm
+			c in ra danh sách các kỳ, các môn học của kỳ (mặc định in ra các kỳ đang học trước)
+			d học viên ấn vào từng môn để xem điểm chi tiết 
+	ii Xem danh sach các môn học
+		1 Kích hoạt: 
+            a ấn vào "Khung chương trình"
+        2 Trình tự xử lý:
+		   	a chuyển trang
+			b Hiển thị khung chương trình học theo mã ngành học(mã môn, tên,kỳ)
+    iii Xem danh sách các môn đang học 
+        1 Kích hoạt: 
+            a ấn vào “các môn đang học”
+        2 Trình tự xử lý:
+            a Chuyển trang
+            b Hiển thị các môn đang học trong kỳ này
 
 ### Giáo vụ
-    - Tạo khung chương trình các ngành thuộc mỗi khóa
-        + Kích hoạt
-        + Trình tự xử lý:
-            : Nhập ngành
-            : Nhập môn
-    - Sắp xếp lịch sinh viên:
-        + Trình tự xử lý:
-            : Nhập Khóa
-            : Nhập Lớp
-            : Nhập sinh viên
-    - Nhập điểm:
-		+ Kích hoạt
-		    : ấn vào "Nhập điểm"
-		+ Trình tự xử lý:
-            : chuyển sang trang nhập điểm
-            : chọn khóa
-            : chọn ngành
-            : chọn lớp (tích chọn vào các lớp)
-            : chọn môn 
-            : gửi file điểm()
+    i Tạo khung chương trình các ngành thuộc mỗi khóa
+        1 Kích hoạt
+        2 Trình tự xử lý:
+            a Nhập ngành
+            b Nhập môn
+    ii Sắp xếp lịch sinh viên:
+        1 Trình tự xử lý:
+            a Nhập Khóa
+            b Nhập Lớp
+            c Nhập sinh viên
+    iii Nhập điểm:
+		1 Kích hoạt
+		    a ấn vào "Nhập điểm"
+		2 Trình tự xử lý:
+            a chuyển sang trang nhập điểm
+            b chọn khóa
+            c chọn ngành
+            d chọn lớp (tích chọn vào các lớp)
+            e chọn môn 
+            f gửi file điểm()
