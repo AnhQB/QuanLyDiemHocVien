@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
-use App\Models\Classes;
+use App\Models\Manager;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,9 +15,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+
         Admin::factory(10)->create();
-        Classes::factory(10)->create();
-        Classes::factory(10)->create();
+        Manager::factory(10)->create();
+        $this->call([
+            DegreeSeeder::class
+        ]);
+        $this->call([
+            MajorSeeder::class
+        ]);
+        $this->call([
+            SubjectSeeder::class
+        ]);
+        $this->call([
+            DegreeMajorSeeder::class
+        ]);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Subject_Prequisite;
+use App\Models\SubjectPrequisite;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class SubjectPrequisitePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Subject_Prequisite  $subjectPrequisite
+     * @param  \App\Models\SubjectPrequisite  $subjectPrequisite
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Subject_Prequisite $subjectPrequisite)
+    public function view(User $user, SubjectPrequisite $subjectPrequisite)
     {
         //
     }
@@ -48,10 +48,10 @@ class SubjectPrequisitePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Subject_Prequisite  $subjectPrequisite
+     * @param  \App\Models\SubjectPrequisite  $subjectPrequisite
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Subject_Prequisite $subjectPrequisite)
+    public function update(User $user, SubjectPrequisite $subjectPrequisite)
     {
         //
     }
@@ -60,10 +60,10 @@ class SubjectPrequisitePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Subject_Prequisite  $subjectPrequisite
+     * @param  \App\Models\SubjectPrequisite  $subjectPrequisite
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Subject_Prequisite $subjectPrequisite)
+    public function delete(User $user, SubjectPrequisite $subjectPrequisite)
     {
         //
     }
@@ -72,10 +72,10 @@ class SubjectPrequisitePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Subject_Prequisite  $subjectPrequisite
+     * @param  \App\Models\SubjectPrequisite  $subjectPrequisite
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Subject_Prequisite $subjectPrequisite)
+    public function restore(User $user, SubjectPrequisite $subjectPrequisite)
     {
         //
     }
@@ -84,10 +84,10 @@ class SubjectPrequisitePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Subject_Prequisite  $subjectPrequisite
+     * @param  \App\Models\SubjectPrequisite  $subjectPrequisite
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Subject_Prequisite $subjectPrequisite)
+    public function forceDelete(User $user, SubjectPrequisite $subjectPrequisite)
     {
         //
     }

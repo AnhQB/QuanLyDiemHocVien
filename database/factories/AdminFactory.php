@@ -14,7 +14,11 @@ class AdminFactory extends Factory
     public function definition()
     {
         return [
-            'name'=>$this->faker->name,
+            'name'=>$this->faker->firstName . ' ' . $this->faker->lastName,
+            'gender'=>$this->faker->boolean,
+            'phone'=>$this->faker->phoneNumber,
+            'email'=>$this->faker->email,
+            'password'=>$this->faker->password,
         ];
     }
 }

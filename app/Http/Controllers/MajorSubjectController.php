@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Major_Subject;
-use App\Http\Requests\StoreMajor_SubjectRequest;
-use App\Http\Requests\UpdateMajor_SubjectRequest;
+use App\Models\MajorSubject;
+use App\Http\Requests\StoreMajorSubjectRequest;
+use App\Http\Requests\UpdateMajorSubjectRequest;
 
 class MajorSubjectController extends Controller
 {
@@ -31,10 +31,10 @@ class MajorSubjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreMajor_SubjectRequest  $request
+     * @param  \App\Http\Requests\StoreMajorSubjectRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMajor_SubjectRequest $request)
+    public function store(StoreMajorSubjectRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class MajorSubjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Major_Subject  $major_Subject
+     * @param  \App\Models\MajorSubject  $majorSubject
      * @return \Illuminate\Http\Response
      */
-    public function show(Major_Subject $major_Subject)
+    public function show(MajorSubject $majorSubject)
     {
         //
     }
@@ -53,10 +53,10 @@ class MajorSubjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Major_Subject  $major_Subject
+     * @param  \App\Models\MajorSubject  $majorSubject
      * @return \Illuminate\Http\Response
      */
-    public function edit(Major_Subject $major_Subject)
+    public function edit(MajorSubject $majorSubject)
     {
         //
     }
@@ -64,11 +64,11 @@ class MajorSubjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateMajor_SubjectRequest  $request
-     * @param  \App\Models\Major_Subject  $major_Subject
+     * @param  \App\Http\Requests\UpdateMajorSubjectRequest  $request
+     * @param  \App\Models\MajorSubject  $majorSubject
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMajor_SubjectRequest $request, Major_Subject $major_Subject)
+    public function update(UpdateMajorSubjectRequest $request, MajorSubject $majorSubject)
     {
         //
     }
@@ -76,10 +76,10 @@ class MajorSubjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Major_Subject  $major_Subject
+     * @param  \App\Models\MajorSubject  $majorSubject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Major_Subject $major_Subject)
+    public function destroy(MajorSubject $majorSubject)
     {
         //
     }

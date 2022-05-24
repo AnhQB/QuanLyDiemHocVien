@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Subject_Prequisite;
-use App\Http\Requests\StoreSubject_PrequisiteRequest;
-use App\Http\Requests\UpdateSubject_PrequisiteRequest;
+use App\Models\SubjectPrequisite;
+use App\Http\Requests\StoreSubjectPrequisiteRequest;
+use App\Http\Requests\UpdateSubjectPrequisiteRequest;
 
 class SubjectPrequisiteController extends Controller
 {
@@ -31,10 +31,10 @@ class SubjectPrequisiteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreSubject_PrequisiteRequest  $request
+     * @param  \App\Http\Requests\StoreSubjectPrequisiteRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSubject_PrequisiteRequest $request)
+    public function store(StoreSubjectPrequisiteRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class SubjectPrequisiteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Subject_Prequisite  $subject_Prequisite
+     * @param  \App\Models\SubjectPrequisite  $subjectPrequisite
      * @return \Illuminate\Http\Response
      */
-    public function show(Subject_Prequisite $subject_Prequisite)
+    public function show(SubjectPrequisite $subjectPrequisite)
     {
         //
     }
@@ -53,10 +53,10 @@ class SubjectPrequisiteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Subject_Prequisite  $subject_Prequisite
+     * @param  \App\Models\SubjectPrequisite  $subjectPrequisite
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subject_Prequisite $subject_Prequisite)
+    public function edit(SubjectPrequisite $subjectPrequisite)
     {
         //
     }
@@ -64,11 +64,11 @@ class SubjectPrequisiteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSubject_PrequisiteRequest  $request
-     * @param  \App\Models\Subject_Prequisite  $subject_Prequisite
+     * @param  \App\Http\Requests\UpdateSubjectPrequisiteRequest  $request
+     * @param  \App\Models\SubjectPrequisite  $subjectPrequisite
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSubject_PrequisiteRequest $request, Subject_Prequisite $subject_Prequisite)
+    public function update(UpdateSubjectPrequisiteRequest $request, SubjectPrequisite $subjectPrequisite)
     {
         //
     }
@@ -76,10 +76,10 @@ class SubjectPrequisiteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Subject_Prequisite  $subject_Prequisite
+     * @param  \App\Models\SubjectPrequisite  $subjectPrequisite
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subject_Prequisite $subject_Prequisite)
+    public function destroy(SubjectPrequisite $subjectPrequisite)
     {
         //
     }

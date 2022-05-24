@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Degree_Major;
-use App\Http\Requests\StoreDegree_MajorRequest;
-use App\Http\Requests\UpdateDegree_MajorRequest;
+use App\Models\DegreeMajor;
+use App\Http\Requests\StoreDegreeMajorRequest;
+use App\Http\Requests\UpdateDegreeMajorRequest;
 
 class DegreeMajorController extends Controller
 {
@@ -31,10 +31,10 @@ class DegreeMajorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreDegree_MajorRequest  $request
+     * @param  \App\Http\Requests\StoreDegreeMajorRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDegree_MajorRequest $request)
+    public function store(StoreDegreeMajorRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class DegreeMajorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Degree_Major  $degree_Major
+     * @param  \App\Models\DegreeMajor  $degreeMajor
      * @return \Illuminate\Http\Response
      */
-    public function show(Degree_Major $degree_Major)
+    public function show(DegreeMajor $degreeMajor)
     {
         //
     }
@@ -53,10 +53,10 @@ class DegreeMajorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Degree_Major  $degree_Major
+     * @param  \App\Models\DegreeMajor  $degreeMajor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Degree_Major $degree_Major)
+    public function edit(DegreeMajor $degreeMajor)
     {
         //
     }
@@ -64,11 +64,11 @@ class DegreeMajorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateDegree_MajorRequest  $request
-     * @param  \App\Models\Degree_Major  $degree_Major
+     * @param  \App\Http\Requests\UpdateDegreeMajorRequest  $request
+     * @param  \App\Models\DegreeMajor  $degreeMajor
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDegree_MajorRequest $request, Degree_Major $degree_Major)
+    public function update(UpdateDegreeMajorRequest $request, DegreeMajor $degreeMajor)
     {
         //
     }
@@ -76,10 +76,10 @@ class DegreeMajorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Degree_Major  $degree_Major
+     * @param  \App\Models\DegreeMajor  $degreeMajor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Degree_Major $degree_Major)
+    public function destroy(DegreeMajor $degreeMajor)
     {
         //
     }

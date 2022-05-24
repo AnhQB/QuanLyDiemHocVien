@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Major_Subject;
+use App\Models\MajorSubject;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class MajorSubjectPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Major_Subject  $majorSubject
+     * @param  \App\Models\MajorSubject  $majorSubject
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Major_Subject $majorSubject)
+    public function view(User $user, MajorSubject $majorSubject)
     {
         //
     }
@@ -48,10 +48,10 @@ class MajorSubjectPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Major_Subject  $majorSubject
+     * @param  \App\Models\MajorSubject  $majorSubject
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Major_Subject $majorSubject)
+    public function update(User $user, MajorSubject $majorSubject)
     {
         //
     }
@@ -60,10 +60,10 @@ class MajorSubjectPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Major_Subject  $majorSubject
+     * @param  \App\Models\MajorSubject  $majorSubject
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Major_Subject $majorSubject)
+    public function delete(User $user, MajorSubject $majorSubject)
     {
         //
     }
@@ -72,10 +72,10 @@ class MajorSubjectPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Major_Subject  $majorSubject
+     * @param  \App\Models\MajorSubject  $majorSubject
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Major_Subject $majorSubject)
+    public function restore(User $user, MajorSubject $majorSubject)
     {
         //
     }
@@ -84,10 +84,10 @@ class MajorSubjectPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Major_Subject  $majorSubject
+     * @param  \App\Models\MajorSubject  $majorSubject
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Major_Subject $majorSubject)
+    public function forceDelete(User $user, MajorSubject $majorSubject)
     {
         //
     }

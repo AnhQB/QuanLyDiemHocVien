@@ -14,7 +14,13 @@ class ManagerFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=>$this->faker->firstName . ' ' . $this->faker->lastName,
+            'avatar'=>$this->faker->imageUrl(),
+            'gender'=>$this->faker->boolean,
+            'phone'=>$this->faker->phoneNumber,
+            'address'=>$this->faker->address,
+            'email'=>$this->faker->email,
+            'password'=>$this->faker->password,
         ];
     }
 }
