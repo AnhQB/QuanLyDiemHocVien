@@ -39,9 +39,15 @@ class SubjectSeeder extends Seeder
             'Nghệ thuật chữ'=>'1',
             'Đồ họa vi tính 1'=>'2',
             'Đồ họa vi tính 2'=>'2',
-            'Đồ họa vi tính 2'=>'2',
+            'Đồ họa vi tính 3'=>'2',
             'Sáng tác thiết kể 1'=>'2',
             'Sáng tác thiết kể 2'=>'2',
+
+            'Những nguyên lý cơ bản của CN Mác-Lênin'=>'1',
+            'Tư tưởng Hồ Chí Minh'=>'1',
+            'Đường lối cách mạng của Đảng Cộng sản Việt Nam'=>'1',
+            'Pháp luật đại cương'=>'1',
+            'Logic học đại cương'=>'1',
 
         ];
         foreach ($arr as $key => $val){

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Degree;
+use App\Models\Major;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SubjectFactory extends Factory

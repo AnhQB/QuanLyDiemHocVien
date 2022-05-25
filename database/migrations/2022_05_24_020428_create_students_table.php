@@ -24,7 +24,7 @@ class CreateStudentsTable extends Migration
             $table->string('password');
             $table->smallInteger('semester_major');
             $table->foreignId('major_id')->constrained();
-            $table->foreignId('degree')->constrained();
+            $table->foreignId('degree_id')->constrained();
             $table->timestamps();
         });
     }
