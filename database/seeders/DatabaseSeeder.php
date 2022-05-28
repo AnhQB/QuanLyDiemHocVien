@@ -23,21 +23,17 @@ class DatabaseSeeder extends Seeder
         Admin::factory(10)->create();
         Manager::factory(10)->create();
         $this->call([
-            DegreeSeeder::class
-        ]);
-        $this->call([
-            MajorSeeder::class
-        ]);
-        $this->call([
-            SubjectSeeder::class
-        ]);
-        $this->call([
-            DegreeMajorSeeder::class
-        ]);
-        $this ->call([
+            DegreeSeeder::class,
+            MajorSeeder::class,
+            SubjectSeeder::class,
+            DegreeMajorSeeder::class,
             MajorSubjectSeeder::class
         ]);
         Student::factory(4000)->create();
-        Group::factory(120)->create();
+        $this->call([
+            GroupSeeder::class,
+            StudentGroupSeeder::class,
+        ]);
+
     }
 }

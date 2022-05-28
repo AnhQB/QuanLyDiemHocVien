@@ -16,10 +16,6 @@ class StudentGroupFactory extends Factory
      */
     public function definition()
     {
-        $groups=Group::query()->pluck('id','subject_id')->toarray();
-        $students=Student::query()->pluck('id')->toarray();
-        return [
-
-        ];
+        //
     }
 }
