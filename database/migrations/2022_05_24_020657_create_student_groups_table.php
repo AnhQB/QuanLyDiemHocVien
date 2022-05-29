@@ -14,7 +14,7 @@ class CreateStudentGroupsTable extends Migration
     public function up()
     {
         Schema::create('student_groups', function (Blueprint $table) {
-            $table->bigInteger('group_id')->unsigned();
+            $table->string('group_id');
             $table->bigInteger('subject_id')->unsigned();
             $table->bigInteger('student_id')->unsigned();
             $table->primary([

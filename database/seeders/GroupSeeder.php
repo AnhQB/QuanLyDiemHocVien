@@ -45,10 +45,11 @@ class GroupSeeder extends Seeder
                                 $group[$i]++;
                             }
                             $data = [
-                                'name' => 'SE'.$count.($i + 1000),
+                                'id' => 'SE'.$count.($i + 1000),
+                                'subject_id' => $key,
                                 'degree_id' => '1',
                                 'major_id' => '1',
-                                'subject_id' => $key,
+
                             ];
                             Group::create($data);
                         }
@@ -64,10 +65,11 @@ class GroupSeeder extends Seeder
                                 $group2[$i]++;
                             }
                             $data = [
-                                'name' => 'GD'.$count.($i + 1000),
+                                'id' => 'GD'.$count.($i + 1000),
+                                'subject_id' => $key,
                                 'degree_id' => '1',
                                 'major_id' => '2',
-                                'subject_id' => $key,
+
                             ];
                             Group::create($data);
                         }
@@ -85,10 +87,11 @@ class GroupSeeder extends Seeder
                                 $group[$i]++;
                             }
                             $data = [
-                                'name' => 'SE'.$count.($i + 1000),
+                                'id' => 'SE'.$count.($i + 1000),
+                                'subject_id' => $key,
                                 'degree_id' => '2',
                                 'major_id' => '1',
-                                'subject_id' => $key,
+
                             ];
                             Group::create($data);
                         }
@@ -103,10 +106,11 @@ class GroupSeeder extends Seeder
                                 $group2[$i]++;
                             }
                             $data = [
-                                'name' => 'GD'.$count.($i + 1000),
+                                'id' => 'GD'.$count.($i + 1000),
+                                'subject_id' => $key,
                                 'degree_id' => '2',
                                 'major_id' => '2',
-                                'subject_id' => $key,
+
                             ];
                             Group::create($data);
                         }
@@ -120,10 +124,11 @@ class GroupSeeder extends Seeder
                         //khóa 3 từ kỳ 7 đến kỳ 9
                         for ($i = 0; $i < 7; $i++) {
                             $data = [
-                                'name' => 'SE'.$count.($i + 1000),
+                                'id' => 'SE'.$count.($i + 1000),
+                                'subject_id' => $key,
                                 'degree_id' => '3',
                                 'major_id' => '1',
-                                'subject_id' => $key,
+
                             ];
                             Group::create($data);
                         }
@@ -133,10 +138,11 @@ class GroupSeeder extends Seeder
                     if ($val >= 7 && $val <= 9) {
                         for ($i = 0; $i < 7; $i++) {
                             $data = [
-                                'name' => 'GD'.$count.($i + 1000),
+                                'id' => 'GD'.$count.($i + 1000),
+                                'subject_id' => $key,
                                 'degree_id' => '3',
                                 'major_id' => '2',
-                                'subject_id' => $key,
+
                             ];
                             Group::create($data);
                         }

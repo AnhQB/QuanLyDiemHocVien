@@ -14,11 +14,14 @@ class CreateGroupsTable extends Migration
     public function up()
     {
         Schema::create('groups', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+            $table->string('id');
+            $table->foreignId('subject_id')->constrained();
             $table->foreignId('degree_id')->constrained();
             $table->foreignId('major_id')->constrained();
-            $table->foreignId('subject_id')->constrained();
+            $table->primary([
+                'id',
+                'subject_id',
+            ]);
             $table->timestamps();
         });
     }
