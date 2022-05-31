@@ -16,7 +16,7 @@ class CreateSubjectsTable extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->smallInteger('exam_type');
+            $table->smallInteger('exam_type')->comment('GradeExamTypeEnum');
 
         });
     }

@@ -29,10 +29,11 @@ class DatabaseSeeder extends Seeder
             DegreeMajorSeeder::class,
             MajorSubjectSeeder::class
         ]);
-        Student::factory(4000)->create();
+        Student::factory(1000)->create();
         $this->call([
             GroupSeeder::class,
             StudentGroupSeeder::class,
+            GradeSeeder::class,
         ]);
 
     }

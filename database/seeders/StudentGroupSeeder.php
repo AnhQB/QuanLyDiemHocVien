@@ -7,8 +7,6 @@ use App\Models\MajorSubject;
 use App\Models\Student;
 use App\Models\StudentGroup;
 use Illuminate\Database\Seeder;
-use phpDocumentor\Reflection\Types\Boolean;
-use Psy\Exception\ErrorException;
 
 class StudentGroupSeeder extends Seeder
 {
@@ -57,6 +55,7 @@ class StudentGroupSeeder extends Seeder
                         ->pluck('semester_major','subject_id')
                         ->toArray();
 
+
         foreach($group_soft_degree as $key => $val){
             $arr_student_added=array();
             $subject_group=array();
@@ -65,9 +64,14 @@ class StudentGroupSeeder extends Seeder
                 $subject_group = Group::where('id',$key)
                                 ->pluck('subject_id')
                                 ->toArray();
+
                 foreach($subject_group as $subject){
                     $numberStudent=0;
                     $arrStudent = $this->GetStudent($student_soft_1, $semster_subject_soft, $subject);
+//                    foreach($arrStudent as $k){
+//                        echo ($k .'-');
+//                    }
+//                    echo("===================" . PHP_EOL);
                     foreach($arrStudent as $student) {
                         $data = [
                             'group_id' => $key,
@@ -80,7 +84,7 @@ class StudentGroupSeeder extends Seeder
                             $arr_student_added[] = $student;
 //                                array_push($arr_student_added,$student);
                         }
-                        if ($numberStudent >= 30) {
+                        if ($numberStudent >= 27) {
                             break;
                         }
 
@@ -93,7 +97,8 @@ class StudentGroupSeeder extends Seeder
 //                    echo ($k .'-');
 //                }
 //                echo("===================" . PHP_EOL);
-            }else if($val ===2){
+            }
+            else if($val ===2){
 
                 $subject_group = Group::where('id',$key)
                     ->pluck('subject_id')
@@ -122,7 +127,8 @@ class StudentGroupSeeder extends Seeder
 //                $student_soft_1=\array_diff_key($student_soft_1,$arr_student_added);
                 $student_soft_2=[];
                 $student_soft_2=array_values($this->DeleteElement($student_soft_2,$arr_student_added));
-            }else{
+            }
+            else{
                 $subject_group = Group::where('id',$key)
                     ->pluck('subject_id')
                     ->toArray();
@@ -176,7 +182,7 @@ class StudentGroupSeeder extends Seeder
                             $arr_student_added[] = $student;
 //                                array_push($arr_student_added,$student);
                         }
-                        if ($numberStudent >= 30) {
+                        if ($numberStudent >= 27) {
                             break;
                         }
 
@@ -185,13 +191,14 @@ class StudentGroupSeeder extends Seeder
 //                $student_soft_1=\array_diff_key($student_soft_1,$arr_student_added);
                 $student_design_1=[];
                 $student_design_1=array_values($this->DeleteElement($student_design_1,$arr_student_added));
-            }else if($val ===2){
+            }
+            else if($val ===2){
                 $subject_group = Group::where('id',$key)
                     ->pluck('subject_id')
                     ->toArray();
                 foreach($subject_group as $subject){
                     $numberStudent=0;
-                    $arrStudent = $this->GetStudent($student_design_1, $semster_subject_design, $subject);
+                    $arrStudent = $this->GetStudent($student_design_2, $semster_subject_design, $subject);
                     foreach($arrStudent as $student) {
                         $data = [
                             'group_id' => $key,
@@ -242,14 +249,15 @@ class StudentGroupSeeder extends Seeder
                 $student_design_3=[];
                 $student_design_3=array_values($this->DeleteElement($student_design_3,$arr_student_added));
             }
-        }
 
+        }
     }
 
     function GetStudent($arr_Student, $arr_Semester_Subject, $subject) : array
     {
         $arr=array();
         foreach($arr_Student as $k => $v){
+//            echo($v . "===" . $arr_Semester_Subject[$subject] . PHP_EOL);
             if($v === $arr_Semester_Subject[$subject]){
                 $arr[] = $k;
             }

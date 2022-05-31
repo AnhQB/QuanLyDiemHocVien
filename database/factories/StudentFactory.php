@@ -17,7 +17,19 @@ class StudentFactory extends Factory
     {
         $majors= Major::query()->pluck('id')->toarray();
         $degrees= Degree::query()->pluck('id')->toarray();
-
+        $degree = $this -> faker -> randomElement($degrees);
+        $semester =1;
+        switch ($degree) {
+            case 1:
+                $semester = random_int(7,9);
+                break;
+            case 2:
+                $semester = random_int(4,6);
+                break;
+            case 3:
+                $semester = random_int(1,3);
+                break;
+        }
         return [
             'name'=>$this->faker->firstName . ' ' . $this->faker->lastName,
             'avatar' => $this -> faker -> imageUrl(),
@@ -26,11 +38,9 @@ class StudentFactory extends Factory
             'address' => $this -> faker -> address,
             'email' => $this -> faker -> email,
             'password' => $this -> faker -> password,
-            'semester_major' => $this -> faker -> randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9]),
+            'semester_major' => $semester,
             'major_id' => $this -> faker -> randomElement($majors)  ,
-            'degree_id' => $this -> faker -> randomElement($degrees),
-
-
+            'degree_id' => $degree,
         ];
     }
 }
