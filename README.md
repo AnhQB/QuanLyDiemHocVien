@@ -5,6 +5,8 @@
 [ERD](https://drive.google.com/file/d/188AwsRL-o4Ny8g720pagM5M7IZxW-cQs/view?usp=sharing)
 <br />
 [DB excel](https://docs.google.com/spreadsheets/d/1kTHIvvO7qAOM1ewBwm4xIt-Lw5qrV4MLJZrOLwpO1zs/edit?usp=sharing)
+<br />
+[Screen Design](https://docs.google.com/document/d/1kMuL-SwigOroLj4ZWz4r7XcYx6ssXW0VQoYw-XgpLvE/edit?usp=sharing)
 
 
 
@@ -20,7 +22,6 @@
 		- Học viên
 			+ Xem điểm thi: hiển thị các kỳ đã/ đang học, mỗi kỳ hiển thị danh sách các môn của kỳ đó
 			+ Xem khung chương trình các môn học: tất cả các môn của ngành học
-			+ Xem danh sách các lớp, thông tin sinh viên trong lớp đó (mã sinh viên, ảnh, họ tên)
 		- Giáo vụ
 		    + Quản lý khóa
 		    + Quản lý ngành
