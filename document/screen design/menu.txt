@@ -1,0 +1,18 @@
+Đầu năm:
+	thêm ngành học cho khoá mới
+	thêm khung chương trình từng ngành
+	thêm sinh viên -> thêm lớp học (đầu kỳ học)
+
+		sau khi thi:
+			nhập điểm
+			danh sách sinh viên thi lại
+	cuối kỳ học:
+		tổng kết điểm
+		danh sách sinh viên học lại
+		
+cuối năm:
+	danh sách sinh viên đã tốt nghiệp, chưa tốt nghiệp
+	
+	
+
+	
