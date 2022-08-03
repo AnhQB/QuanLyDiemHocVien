@@ -1,74 +1,50 @@
-<html lang="en">
-<head>
+
+<html lang="en" class="perfect-scrollbar-on"><head>
     <meta charset="utf-8">
-    <title>Hyper - Responsive Bootstrap 4 Admin Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
-    <meta content="Coderthemes" name="author">
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
+    <title>{{$title ?? ''}}</title>
 
-    <!-- App css -->
-    <link href="{{asset('css/icons.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('css/app-creative.min.css')}}" rel="stylesheet" type="text/css" id="light-style">
-{{--    <link href="{{asset('css/app-creative-dark.min.css')}}" rel="stylesheet" type="text/css" id="dark-style" />--}}
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="viewport" content="width=device-width">
 
-<body class=""
-      data-layout-config="{&quot;leftSideBarTheme&quot;:&quot;dark&quot;,&quot;layoutBoxed&quot;:false, &quot;leftSidebarCondensed&quot;:false, &quot;leftSidebarScrollable&quot;:false,&quot;darkMode&quot;:false, &quot;showRightSidebarOnStart&quot;: true}">
-<!-- Begin page -->
-<div class="wrapper mm-active">
-    <!-- ========== Left Sidebar Start ========== -->
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
+
+    <!--  Paper Dashboard core CSS    -->
+    <link href="{{asset('css/paper-dashboard.css')}}" rel="stylesheet"/>
+
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet" type="text/css">
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/49/11/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/49/11/util.js"></script></head>
+    <link href="{{asset('css/themify-icons.css')}}" rel="stylesheet">
+
+<body class="">
+<div class="wrapper">
+
     @include('layout.sidebar')
-    <!-- Left Sidebar End -->
+    <div class="main-panel ps-container ps-theme-default ps-active-y" data-ps-id="35adbff3-a444-3369-13da-2d2b2681985f">
+        @include('layout.header')
 
-    <!-- ============================================================== -->
-    <!-- Start Page Content here -->
-    <!-- ============================================================== -->
 
-    <div class="content-page">
         <div class="content">
-            <!-- Topbar Start -->
-            @include('layout.header')
-            <!-- end Topbar -->
-
-            <!-- Start Content-->
             <div class="container-fluid">
-
-                <!-- start page title -->
                 <div class="row">
-                    <div class="col-12">
-                        <div class="page-title-box">
-                            <h4 class="page-title">Vertical</h4>
-                        </div>
-                    </div>
+
+                    @yield('content')
+                    <!-- your content here -->
                 </div>
-                <!-- end page title -->
-
-
             </div>
-            <!-- container -->
-
         </div>
-        <!-- content -->
-
-        <!-- Footer Start -->
         @include('layout.footer')
-        <!-- end Footer -->
 
-    </div>
-
-    <!-- ============================================================== -->
-    <!-- End Page content -->
-    <!-- ============================================================== -->
-
-
+        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 625px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 600px;"></div></div></div>
 </div>
-<!-- bundle -->
-<script src="{{asset('js/vendor.min.js')}}"></script>
-<script src="{{asset('js/app.min.js')}}"></script>
 
-</body>
-</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+@stack('js')
+
+
+</body></html>

@@ -32,7 +32,8 @@ class StudentFactory extends Factory
         }
         return [
             'name'=>$this->faker->firstName . ' ' . $this->faker->lastName,
-            'avatar' => $this -> faker -> imageUrl(),
+            'avatar' => null,
+            'date_of_birth'=>$this->faker->date(),
             'gender' => $this -> faker -> boolean,
             'phone' => $this -> faker -> phoneNumber,
             'address' => $this -> faker -> address,

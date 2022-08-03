@@ -8,14 +8,16 @@ use App\Http\Requests\UpdateSubjectRequest;
 
 class SubjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        return Subject::query()
+            ->addSelect('subjects.*')
+            ->addSelect("REPLACE(GROUP_CONCAT(majors.name),',',', ') AS major, REPLACE(GROUP_CONCAT(major_subjects.semester_major),',',', ') AS semester")
+            ->join('major_subjects ','subjects.id','major_subjects.subject_id')
+            ->join('majors', 'majors.id', 'major_subjects.major_id')
+            ->groupBy('subjects.id')
+            ->get();
     }
 
     /**

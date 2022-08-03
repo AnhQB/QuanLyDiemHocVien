@@ -10,4 +10,10 @@ class Degree extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    protected $fillable = [
+        'name',
+        'start_year',
+        'end_year',
+    ];
 }

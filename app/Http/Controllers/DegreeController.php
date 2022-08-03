@@ -2,53 +2,55 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Degree\StoreDegreeRequest;
 use App\Models\Degree;
-use App\Http\Requests\StoreDegreeRequest;
-use App\Http\Requests\UpdateDegreeRequest;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 class DegreeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private Builder $model;
+    private string $table;
+
+    public function __construct()
+    {
+        $this->model = (new Degree())->query();
+        $this->table = (new Degree())->getTable();
+        $routeName=Route::currentRouteName();
+        $arr = explode('.',$routeName);
+        $arr=array_map('ucfirst', $arr);
+        $title=implode(' - ',$arr);
+        //dd($title);
+
+        View::share('title', $title);
+    }
+
+
     public function index()
     {
-        //
+        $data = Degree::paginate(2);
+        return view("admin.$this->table.index",[
+           'data'=>$data,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $currentYear = date('Y');
+
+        return view("admin.$this->table.create", [
+            'currentYear' => $currentYear,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreDegreeRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreDegreeRequest $request)
+    public function store(StoreDegreeRequest $request): \Illuminate\Http\RedirectResponse
     {
-        //
+        $this->model->create($request->except('_token'));
+        return redirect()->route('degrees.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Degree  $degree
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Degree $degree)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

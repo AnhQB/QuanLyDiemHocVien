@@ -1,16 +1,26 @@
 <footer class="footer">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                2018 - 2020 © Hyper - Coderthemes.com
-            </div>
-            <div class="col-md-6">
-                <div class="text-md-right footer-links d-none d-md-block">
-                    <a href="javascript: void(0);">About</a>
-                    <a href="javascript: void(0);">Support</a>
-                    <a href="javascript: void(0);">Contact Us</a>
-                </div>
-            </div>
+        <nav class="pull-left">
+            <ul>
+                <li>
+                    <a href="http://www.creative-tim.com">
+                        Creative Tim
+                    </a>
+                </li>
+                <li>
+                    <a href="http://blog.creative-tim.com">
+                        Blog
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.creative-tim.com/license">
+                        Licenses
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright pull-right">
+            © <script>document.write(new Date().getFullYear())</script>2022, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
         </div>
     </div>
 </footer>

@@ -5,27 +5,40 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    private Builder $model;
+    private string $table;
+
+    public function __construct()
     {
-        //
+        $this->model = (new Student()) -> query();
+        $this->table = (new Student())->getTable();
+
+        $routeName = Route::currentRouteName();
+        $arr = explode('.',$routeName);
+        $arr=array_map('ucfirst', $arr);
+        $title=implode(' - ',$arr);
+
+        View::share('title', $title);
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index()
+    {
+        $data = Student::paginate(5);
+        return view("admin.$this->table.index",[
+           'data' => $data
+        ]);
+    }
+
     public function create()
     {
-        //
+        return view("admin.$this->table.create");
     }
 
     /**
