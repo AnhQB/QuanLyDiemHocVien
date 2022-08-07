@@ -1,5 +1,7 @@
 @extends('layout.master')
 @section('content')
+    <div class="card">
+        <div class="card-content">
     <a href="{{route('degrees.create')}}">Create new</a>
     <table class="table table-centered mb-0">
         <thead>
@@ -27,6 +29,8 @@
             {{$data->links()}}
         </ul>
     </nav>
+        </div>
+    </div>
 @endsection
 
 @push('js')

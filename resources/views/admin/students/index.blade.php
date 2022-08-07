@@ -1,6 +1,8 @@
 @extends('layout.master')
 
 @section('content')
+    <div class="card">
+        <div class="card-content">
     <a href="{{route('students.create')}}">Create new</a>
     <table class="table table-centered mb-0">
         <thead>
@@ -15,7 +17,7 @@
         @foreach($data as $each)
             <tr>
                 <td><img src="{{$each->avatar}}"></td>
-                <td>{{$each->id}}</td>
+                <td><a href="{{route('students.show',$each->id)}}">{{$each->id}}</a></td>
                 <td>{{$each->name}}</td>
                 <td><a href="mailto:{{$each->email}}">{{$each->email}}</a></td>
             </tr>
@@ -28,4 +30,6 @@
             {{$data->links()}}
         </ul>
     </nav>
+        </div>
+    </div>
 @endsection

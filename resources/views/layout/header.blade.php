@@ -10,9 +10,11 @@
                 <span class="icon-bar bar2"></span>
                 <span class="icon-bar bar3"></span>
             </button>
+            <p class="navbar-brand">{{$title ?? ''}}</p>
         </div>
         <div class="collapse navbar-collapse">
-            <h1 class="navbar-brand">{{$title ?? ''}}</h1>
+
+
         </div>
     </div>
 </nav>

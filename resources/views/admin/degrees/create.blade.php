@@ -1,5 +1,7 @@
 @extends('layout.master')
 @section('content')
+    <div class="card">
+        <div class="card-content">
     <form method="post" action="{{route('degrees.store')}}">
         @csrf
         <div class="card-content">
@@ -19,4 +21,6 @@
     </form>
 
     <a href="{{route('degrees.index')}}">Back to index</a>
+        </div>
+    </div>
 @endsection

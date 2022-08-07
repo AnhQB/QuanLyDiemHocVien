@@ -27,6 +27,10 @@ class Student extends Model
     {
         return $this->belongsTo(Major::class);
     }
+    public function degree()
+    {
+        return $this->belongsTo(Degree::class);
+    }
 
     public function getGenderNameAttribute()
     {

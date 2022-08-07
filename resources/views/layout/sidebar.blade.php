@@ -12,13 +12,13 @@
             Creative Tim
         </a>
     </div>
-    <div class="sidebar-wrapper ps-container ps-theme-default" data-ps-id="91c68090-073e-3b9b-c453-2febd49ce6dd">
+    <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y" data-ps-id="eb4b5b4d-ab68-7aec-9ff9-c188dff57241">
         <div class="user">
             <div class="photo">
                 <img src="../assets/img/faces/face-2.jpg">
             </div>
             <div class="info">
-                <a data-toggle="collapse" href="#collapseExample" class="collapsed" aria-expanded="false">
+                <a data-toggle="collapse" href="#collapseExample" class="collapsed">
 	                        <span>
 								Chet Faker
 		                        <b class="caret"></b>
@@ -26,7 +26,7 @@
                 </a>
                 <div class="clearfix"></div>
 
-                <div class="collapse" id="collapseExample" aria-expanded="false" style="height: 0px;">
+                <div class="collapse" id="collapseExample">
                     <ul class="nav">
                         <li>
                             <a href="#profile">
@@ -52,30 +52,29 @@
         </div>
         <ul class="nav">
             <li>
-                <a data-toggle="collapse" href="#dashboardOverview" class="collapsed" aria-expanded="false">
+                <a data-toggle="collapse" href="#dashboardOverview" class="" aria-expanded="true">
                     <i class="ti-panel"></i>
-                    <p>Collapse
+                    <p>Dashboard
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="dashboardOverview" aria-expanded="false" style="height: 0px;">
+                <div class="collapse in" id="dashboardOverview" aria-expanded="true" style="">
                     <ul class="nav">
                         <li>
-                            <a href="#panda">
-                                <span class="sidebar-mini">C1</span>
-                                <span class="sidebar-normal">Collapse 1</span>
+                            <a href="dashboard/overview.html">
+                                <span class="sidebar-mini">O</span>
+                                <span class="sidebar-normal">Overview</span>
                             </a>
                         </li>
                         <li>
-                            <span class="sidebar-mini">C2</span>
-                            <span class="sidebar-normal">Collapse 2</span>
+                            <a href="dashboard/stats.html">
+                                <span class="sidebar-mini">S</span>
+                                <span class="sidebar-normal">Stats</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
             </li>
-
-
-
         </ul>
-        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+        <div class="ps-scrollbar-x-rail" style="width: 260px; left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 186px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 153px;"></div></div></div>
 </div>

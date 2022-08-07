@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Degree;
+use App\Models\Major;
 use App\Models\Student;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
@@ -30,7 +32,7 @@ class StudentController extends Controller
 
     public function index()
     {
-        $data = Student::paginate(5);
+        $data = Student::paginate(10);
         return view("admin.$this->table.index",[
            'data' => $data
         ]);
@@ -38,7 +40,12 @@ class StudentController extends Controller
 
     public function create()
     {
-        return view("admin.$this->table.create");
+        $majors = Major::query()->pluck('name','id')->toArray();
+        $degrees = Degree::query()->pluck('name','id')->toArray();
+        return view("admin.$this->table.create",[
+            'majors' => $majors,
+            'degrees' => $degrees
+        ]);
     }
 
     /**
@@ -50,17 +57,20 @@ class StudentController extends Controller
     public function store(StoreStudentRequest $request)
     {
         //
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Student $student)
+
+    public function show(string $id)
     {
-        //
+        $student = $this->model
+            ->with('major')
+            ->with('degree')
+            ->where('id', $id)
+            ->first();
+        return view("admin.$this->table.show",[
+            'student' => $student,
+        ]);
     }
 
     /**

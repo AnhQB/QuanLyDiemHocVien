@@ -36,8 +36,5 @@ Route::resource('majors',MajorController::class)->except([
    'show'
 ]);
 
-Route::resource('students', StudentController::class)->except([
-   'show'
-]);
-
+Route::resource('students', StudentController::class);
 
