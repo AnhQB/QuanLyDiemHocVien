@@ -5,40 +5,45 @@ namespace App\Http\Controllers;
 use App\Models\Subject;
 use App\Http\Requests\StoreSubjectRequest;
 use App\Http\Requests\UpdateSubjectRequest;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 class SubjectController extends Controller
 {
+    private Builder $model;
+    private string $table;
+
+    public function __construct()
+    {
+        $this -> model = (new Subject())->query();
+        $this -> table = (new Subject())->getTable();
+
+        $routeName=Route::currentRouteName();
+        $arr = explode('.',$routeName);
+        $arr = array_map('ucfirst', $arr);
+        $title = implode(' - ',$arr);
+
+        View::share('title', $title);
+    }
 
     public function index()
     {
-        return Subject::query()
-            ->addSelect('subjects.*')
-            ->addSelect("REPLACE(GROUP_CONCAT(majors.name),',',', ') AS major, REPLACE(GROUP_CONCAT(major_subjects.semester_major),',',', ') AS semester")
-            ->join('major_subjects ','subjects.id','major_subjects.subject_id')
-            ->join('majors', 'majors.id', 'major_subjects.major_id')
-            ->groupBy('subjects.id')
-            ->get();
+        $data = $this->model->paginate(10);
+        return view("admin.$this->table.index",[
+            'data' => $data,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view("admin.$this->table.create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreSubjectRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreSubjectRequest $request)
+    public function store(StoreSubjectRequest $request): \Illuminate\Http\RedirectResponse
     {
-        //
+        $this->model->create($request->except('_token'));
+        return redirect()->route('subjects.index');
     }
 
     /**
