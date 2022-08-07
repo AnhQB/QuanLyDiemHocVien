@@ -2,41 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Major\StoreMajorRequest;
+use App\Http\Requests\Major\UpdateMajorRequest;
 use App\Models\Major;
-use App\Http\Requests\StoreMajorRequest;
-use App\Http\Requests\UpdateMajorRequest;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 class MajorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private Builder $model;
+    private string $table;
+
+    public function __construct()
+    {
+        $this->model = (new Major())->query();
+        $this->table = (new Major())->getTable();
+
+        $routename = Route::currentRouteName();
+        $arr = explode('.', $routename);
+        $arr = array_map('ucfirst',$arr);
+        $title = implode(' - ', $arr);
+
+        View::share('title', $title);
+    }
+
     public function index()
     {
-        //
+        $data = $this->model
+                ->paginate(5);
+        return view("admin.$this->table.index",[
+            'data'=>$data
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view("admin.$this->table.create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreMajorRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(StoreMajorRequest $request)
     {
-        //
+        $this->model->create($request->except('_token'));
+        return redirect()->route('majors.index');
     }
 
     /**
