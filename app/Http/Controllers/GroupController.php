@@ -5,17 +5,45 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use App\Http\Requests\StoreGroupRequest;
 use App\Http\Requests\UpdateGroupRequest;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 class GroupController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private Builder $model;
+    private string $table;
+
+    public function __construct()
+    {
+        $this->model = (new Group())->query();
+        $this->table = (new Group())->getTable();
+
+        $routeName = Route::currentRouteName();
+        $arr = explode('.',$routeName);
+        $arr = array_map('ucfirst', $arr);
+        $title = implode(' - ', $arr);
+
+        View::share('title', $title);
+    }
+
     public function index()
     {
-        //
+        $data = $this->model
+            ->selectRaw('id,GROUP_CONCAT(subject_id) AS subject, degree_id, major_id')
+            ->with([
+                'degree',
+                'major',
+                ])
+            ->groupBy([
+                'id',
+                'degree_id',
+                'major_id',
+                ])
+            ->paginate(10);
+        return view("admin.$this->table.index",[
+            'data' => $data,
+        ]);
     }
 
     /**

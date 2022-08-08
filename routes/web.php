@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\DegreeController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Models\Degree;
@@ -37,4 +39,12 @@ Route::resource('majors',MajorController::class)->except([
 ]);
 
 Route::resource('students', StudentController::class);
+
+
+Route::resource('groups', GroupController::class)->except([
+    'show'
+]);
+
+
+//Route::get('/abc/{id}',[ManagerController::class,'abc'])->name('abc');
 
