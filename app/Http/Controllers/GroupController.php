@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Group\StoreGroupRequest;
+use App\Http\Requests\Group\UpdateGroupRequest;
+use App\Models\Degree;
 use App\Models\Group;
-use App\Http\Requests\StoreGroupRequest;
-use App\Http\Requests\UpdateGroupRequest;
+use App\Models\Major;
+use App\Models\Subject;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
@@ -41,30 +44,29 @@ class GroupController extends Controller
                 'major_id',
                 ])
             ->paginate(10);
+
         return view("admin.$this->table.index",[
             'data' => $data,
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $subjects = Subject::query()->pluck('name','id')->toArray();
+        $degrees = Degree::query()->pluck('name','id')->toArray();
+        $majors = Major::query()->pluck('name','id')->toArray();
+
+        return view("admin.$this->table.create", [
+            'subjects' => $subjects,
+            'degrees' => $degrees,
+            'majors' => $majors,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreGroupRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreGroupRequest $request)
     {
-        //
+        $this->model -> create($request -> except('_token'));
+        return redirect()->route('groups.index');
     }
 
     /**
