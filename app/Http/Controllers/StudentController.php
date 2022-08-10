@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Student\StoreStudentRequest;
+use App\Http\Requests\Student\UpdateStudentRequest;
 use App\Models\Degree;
 use App\Models\Major;
 use App\Models\Student;
-use App\Http\Requests\StoreStudentRequest;
-use App\Http\Requests\UpdateStudentRequest;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
@@ -23,8 +26,8 @@ class StudentController extends Controller
 
         $routeName = Route::currentRouteName();
         $arr = explode('.',$routeName);
-        $arr=array_map('ucfirst', $arr);
-        $title=implode(' - ',$arr);
+        $arr = array_map('ucfirst', $arr);
+        $title = implode(' - ',$arr);
 
         View::share('title', $title);
 
@@ -48,16 +51,34 @@ class StudentController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreStudentRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreStudentRequest $request)
     {
-        //
+        $student = new Student();
+        $hashed_random_password = Hash::make(Str::random(8));
+        $student = $this -> model -> create([
+            'name' => $request->name,
+            'date_of_birth' => $request->date_of_birth,
+            'gender' => $request->gender,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'email' => $request->email,
+            'password' => md5($hashed_random_password),
+            'semester_major' => $request->semester_major,
+            'major_id' => $request->major_id,
+            'degree_id' => $request->degree_id,
+        ]);
 
+        $email = str_replace(' ', '', $student -> name) . $student -> id . '@gmail.com';
+
+        $path = Storage::disk("public")->putFile("avatars/$student->id", $request->file('avatar'));
+        $this -> model -> where('id', $student -> id) -> update([
+            'avatar' => $path,
+            'email' => $email,
+        ]);
+
+        return redirect()
+            -> route("$this->table.index")
+            -> with('success','Đã thêm thành công');
     }
 
 

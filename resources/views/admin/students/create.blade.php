@@ -7,49 +7,51 @@
         <div class="card-content">
             <div class="form-group">
                 <label class="control-label">
-                    Name <star>*</star>
+                    Họ và tên <star>*</star>
                 </label>
                 <input class="form-control" name="name" type="text" required="true" >
             </div>
             <div class="form-group">
                 <label class="control-label">
-                    Avatar <star>*</star>
+                    Ảnh <star>*</star>
                 </label>
                 <input class="form-control" name="avatar" type="file">
             </div>
             <div class="form-group">
                 <label class="control-label">
-                    Email<star>*</star>
-                </label>
-                <input readonly class="form-control" name="email" type="text" required="true" email="true" autocomplete="off" aria-required="true">
-                Male<input class="radio" name="gender" type="radio" value="0">
-                Female<input class="radio" name="gender" type="radio" value="1">
+                    Giới tính<star>*</star>
+                    <br>
+                    Nam<input class="radio" name="gender" type="radio" value="0" checked>
+                    Nữ<input class="radio" name="gender" type="radio" value="1">
+                </label><br>
                 <label class="control-label">
-                    Date of Birth<star>*</star>
+                    Ngày sinh<star>*</star>
                 </label>
-                <input  class="form-control" name="dob" type="date" required="true" >
+                <input  class="form-control" name="date_of_birth" type="date" required="true" >
                 <label class="control-label">
-                    Phone<star>*</star>
+                    Số điện thoại<star>*</star>
                 </label>
                 <input  class="form-control" name="phone" type="tel" required="true" >
 
                 <label class="control-label">
-                    Address<star>*</star>
+                    Địa chỉ<star>*</star>
                 </label>
                 <input  class="form-control" name="address" type="text" required="true" >
                 <label class="control-label">
-                    Semester Major<star>*</star>
+                    Kỳ học<star>*</star>
                 </label>
                 <select name="semester_major">
                     @for($i = 1; $i<=9 ; $i++)
-                        <option value="{{$i}}" {{$i===1?'selected':''}}>{{$i}}</option>
+                        <option value="{{$i}}" {{$i===1?'selected':''}}>
+                            {{$i}}
+                        </option>
                     @endfor
 
 
                 </select>
 
                 <label class="control-label">
-                    Major<star>*</star>
+                    Ngành<star>*</star>
                 </label>
                 <select name="major_id">
                     @foreach($majors as $id => $name)
@@ -57,11 +59,17 @@
                     @endforeach
                 </select>
                 <label class="control-label">
-                    Degree<star>*</star>
+                    Khoá học<star>*</star>
                 </label>
                 <select name="degree_id">
                     @foreach($degrees as $id => $name)
-                        <option value="{{$id}}" >{{$name}}</option>
+                        <option value="{{$id}}"
+                            @if ($loop -> last)
+                                selected
+                            @endif
+                        >
+                            {{$name}}
+                        </option>
                     @endforeach
                 </select>
             </div>

@@ -16,7 +16,11 @@
         <tbody>
         @foreach($data as $each)
             <tr>
-                <td><img src="{{$each->avatar}}"></td>
+                @if($each->avatar)
+                    <td><img src="{{public_path().'/'.$each->avatar}}"></td>
+                @else
+                    <td></td>
+                @endif
                 <td><a href="{{route('students.show',$each->id)}}">{{$each->id}}</a></td>
                 <td>{{$each->name}}</td>
                 <td><a href="mailto:{{$each->email}}">{{$each->email}}</a></td>

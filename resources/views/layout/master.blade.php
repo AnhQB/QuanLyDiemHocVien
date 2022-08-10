@@ -34,8 +34,27 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    @yield('content')
-
+                    @if ($errors->any())
+                        <div class="col-12">
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
+                    @if(session()->has('success'))
+                        <div class="col-12">
+                            <div class="alert alert-success">
+                                {{session()->get('success')}}
+                            </div>
+                        </div>
+                    @endif
+                    <div class="col-12">
+                        @yield('content')
+                    </div>
 
 
 
