@@ -1,15 +1,15 @@
 @extends('layout.master')
+
 @section('content')
     <div class="card">
         <div class="card-content">
             <div class="row">
-                <form method="post" action="{{route('majors.store')}}">
+                <form method="post" action="{{ route('majors.store') }}">
                     @csrf
                     <div class="col-md-5">
                         <div class="card-content">
                             <div class="form-group">
-                                <input class="form-control" name="name" type="text" required="true"
-                                       placeholder="Enter name">
+                                <input class="form-control" name="name" type="text" required="true" placeholder="Enter name">
                             </div>
                         </div>
                         <div class="card-footer">
@@ -20,7 +20,7 @@
             </div>
             <div class="row">
                 <div>
-                    <a href="{{route('majors.index')}}">Back to index</a>
+                    <a href="{{ route('majors.index') }}">Back to index</a>
                 </div>
             </div>
         </div>

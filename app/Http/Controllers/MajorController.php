@@ -21,7 +21,7 @@ class MajorController extends Controller
 
         $routename = Route::currentRouteName();
         $arr = explode('.', $routename);
-        $arr = array_map('ucfirst',$arr);
+        $arr = array_map('ucfirst', $arr);
         $title = implode(' - ', $arr);
 
         View::share('title', $title);
@@ -29,10 +29,10 @@ class MajorController extends Controller
 
     public function index()
     {
-        $data = $this->model
-                ->paginate(5);
-        return view("admin.$this->table.index",[
-            'data'=>$data
+        $data = $this->model->paginate(5);
+
+        return view("admin.$this->table.index", [
+            'data' => $data
         ]);
     }
 
@@ -44,10 +44,11 @@ class MajorController extends Controller
 
     public function store(StoreMajorRequest $request)
     {
-        $this->model->create($request->except('_token'));
+        $this->model->create($request->validated());
+
         return redirect()
             ->route("$this->table.index")
-            -> with('success','Đã thêm thành công');;
+            ->with('success', 'Đã thêm thành công');;
     }
 
     /**
