@@ -40,8 +40,10 @@ Route::resource('majors',MajorController::class)->except([
 
 Route::resource('students', StudentController::class);
 
-
 Route::resource('groups', GroupController::class)->except([
+    'show'
+]);
+Route::resource('managers', ManagerController::class)->except([
     'show'
 ]);
 

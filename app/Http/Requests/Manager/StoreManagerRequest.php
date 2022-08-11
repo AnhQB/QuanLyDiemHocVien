@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Manager;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreManagerRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class StoreManagerRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,33 @@ class StoreManagerRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => [
+                'bail',
+                'required',
+                'string',
+            ],
+            'gender' => [
+                'bail',
+                'required',
+                'boolean'
+            ],
+            'phone' => [
+                'bail',
+                'required',
+            ],
+            'address' => [
+                'bail',
+                'required',
+                'string'
+            ],
+            'email' => [
+                'bail',
+                'nullable',
+                Rule::Unique('managers','email'),
+            ],
+            'password' => [
+                'nullable'
+            ],
         ];
     }
 }

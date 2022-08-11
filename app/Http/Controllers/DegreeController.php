@@ -48,7 +48,9 @@ class DegreeController extends Controller
     public function store(StoreDegreeRequest $request): \Illuminate\Http\RedirectResponse
     {
         $this->model->create($request->except('_token'));
-        return redirect()->route('degrees.index');
+        return redirect()
+            ->route("$this->table.index")
+            -> with('success','Đã thêm thành công');;
     }
 
 

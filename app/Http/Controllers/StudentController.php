@@ -61,7 +61,6 @@ class StudentController extends Controller
             'gender' => $request->gender,
             'phone' => $request->phone,
             'address' => $request->address,
-            'email' => $request->email,
             'password' => md5($hashed_random_password),
             'semester_major' => $request->semester_major,
             'major_id' => $request->major_id,

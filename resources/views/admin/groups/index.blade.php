@@ -18,7 +18,9 @@
                     <tr>
                         <td>{{$index + 1}}</td>
                         <td>{{$each -> id}}</td>
-                        <td>{{$each -> subject}}</td>
+                        <td>
+                            <p>{{$each -> subject}}</p>
+                        </td>
                         <td>{{$each -> degree -> name}}</td>
                         <td>{{$each -> major -> name}}</td>
                     </tr>

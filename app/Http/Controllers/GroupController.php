@@ -33,15 +33,16 @@ class GroupController extends Controller
     public function index()
     {
         $data = $this->model
-            ->selectRaw('id,GROUP_CONCAT(subject_id) AS subject, degree_id, major_id')
+            ->selectRaw( "groups.id, GROUP_CONCAT(subjects.name SEPARATOR ' | ' ) AS subject, groups.degree_id,groups.major_id")
+            ->join('subjects','subjects.id','groups.subject_id')
             ->with([
                 'degree',
                 'major',
                 ])
             ->groupBy([
-                'id',
-                'degree_id',
-                'major_id',
+                'groups.id',
+                'groups.degree_id',
+                'groups.major_id',
                 ])
             ->paginate(10);
 
@@ -66,7 +67,9 @@ class GroupController extends Controller
     public function store(StoreGroupRequest $request)
     {
         $this->model -> create($request -> except('_token'));
-        return redirect()->route('groups.index');
+        return redirect()
+            ->route("$this->table.index")
+            -> with('success','Đã thêm thành công');;
     }
 
     /**

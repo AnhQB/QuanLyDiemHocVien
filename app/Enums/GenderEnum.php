@@ -9,4 +9,12 @@ final class GenderEnum extends Enum
 {
     public const Male =   0;
     public const Female  =   1;
+
+    public static function getArrayGender(): array
+    {
+        return [
+            'Nam' => self::Male,
+            'Nữ' => self::Female,
+        ];
+    }
 }

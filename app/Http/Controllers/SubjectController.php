@@ -43,7 +43,9 @@ class SubjectController extends Controller
     public function store(StoreSubjectRequest $request): \Illuminate\Http\RedirectResponse
     {
         $this->model->create($request->except('_token'));
-        return redirect()->route('subjects.index');
+        return redirect()
+            ->route("$this->table.index")
+            -> with('success','Đã thêm thành công');;
     }
 
     /**

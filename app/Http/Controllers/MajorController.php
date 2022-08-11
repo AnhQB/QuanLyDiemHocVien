@@ -45,7 +45,9 @@ class MajorController extends Controller
     public function store(StoreMajorRequest $request)
     {
         $this->model->create($request->except('_token'));
-        return redirect()->route('majors.index');
+        return redirect()
+            ->route("$this->table.index")
+            -> with('success','Đã thêm thành công');;
     }
 
     /**

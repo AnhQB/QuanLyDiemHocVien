@@ -2,41 +2,73 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\GenderEnum;
 use App\Models\Manager;
-use App\Http\Requests\StoreManagerRequest;
-use App\Http\Requests\UpdateManagerRequest;
+use App\Http\Requests\Manager\StoreManagerRequest;
+use App\Http\Requests\Manager\UpdateManagerRequest;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 
 class ManagerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private Builder $model;
+    private string $table;
+
+    public function __construct()
+    {
+        $this->model = (new Manager())->query();
+        $this->table = (new Manager())->getTable();
+
+        $routeName = Route::currentRouteName();
+        $arr = explode('.', $routeName);
+        $arr = array_map('ucfirst', $arr);
+        $title = implode(' - ', $arr);
+
+        $genderNameVI = GenderEnum::getArrayGender();
+
+        View::share('title', $title);
+        View::share('genderNameVI', $genderNameVI);
+    }
+
+
     public function index()
     {
-        //
+        $data = $this->model->paginate(10);
+
+        return view("admin.$this->table.index", [
+            'data' => $data,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view("admin.$this->table.create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreManagerRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreManagerRequest $request)
     {
-        //
+        $manager = new Manager();
+        $hashed_random_password = Hash::make(Str::random(8));
+        $manager = $this -> model -> create([
+            'name' => $request->name,
+            'gender' => $request->gender,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'password' => md5($hashed_random_password),
+        ]);
+
+        $email = str_replace(' ', '', $manager -> name) . $manager -> id . "_manager@gmail.com";
+
+        $this -> model -> where('id', $manager -> id) -> update([
+            'email' => $email,
+        ]);
+
+        return redirect()
+            -> route("$this->table.index")
+            -> with('success','Đã thêm thành công');
     }
 
     /**
