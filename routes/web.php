@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DegreeController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MajorController;
@@ -44,6 +45,9 @@ Route::resource('groups', GroupController::class)->except([
     'show'
 ]);
 Route::resource('managers', ManagerController::class)->except([
+    'show'
+]);
+Route::resource('admins', AdminController::class)->except([
     'show'
 ]);
 
