@@ -12,17 +12,18 @@
             Creative Tim
         </a>
     </div>
-    <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y" data-ps-id="eb4b5b4d-ab68-7aec-9ff9-c188dff57241">
+    <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y"
+        data-ps-id="eb4b5b4d-ab68-7aec-9ff9-c188dff57241">
         <div class="user">
             <div class="photo">
                 <img src="../assets/img/faces/face-2.jpg">
             </div>
             <div class="info">
                 <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-	                        <span>
-								Chet Faker
-		                        <b class="caret"></b>
-							</span>
+                    <span>
+                        Chet Faker
+                        <b class="caret"></b>
+                    </span>
                 </a>
                 <div class="clearfix"></div>
 
@@ -76,5 +77,11 @@
                 </div>
             </li>
         </ul>
-        <div class="ps-scrollbar-x-rail" style="width: 260px; left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 186px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 153px;"></div></div></div>
+        <div class="ps-scrollbar-x-rail" style="width: 260px; left: 0px; bottom: 3px;">
+            <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+        </div>
+        <div class="ps-scrollbar-y-rail" style="top: 0px; height: 186px; right: 3px;">
+            <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 153px;"></div>
+        </div>
+    </div>
 </div>
