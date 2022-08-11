@@ -7,7 +7,6 @@ use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
-use App\Models\Degree;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,32 +24,16 @@ Route::get('/', function () {
     return view('layout.master');
 });
 
-
-
-Route::resource('subjects', SubjectController::class)->except([
-    'show'
+Route::resources([
+    'subjects' => SubjectController::class,
+    'degrees' => DegreeController::class,
+    'majors' => MajorController::class,
+    'students' => StudentController::class,
+    'groups' => GroupController::class,
+    'managers' => ManagerController::class,
+    'admins' => AdminController::class,
+], [
+    'except' => ['show'],
 ]);
-
-Route::resource('degrees', DegreeController::class)->except([
-    'show'
-]);
-
-Route::resource('majors',MajorController::class)->except([
-   'show'
-]);
-
-Route::resource('students', StudentController::class);
-
-Route::resource('groups', GroupController::class)->except([
-    'show'
-]);
-Route::resource('managers', ManagerController::class)->except([
-    'show'
-]);
-Route::resource('admins', AdminController::class)->except([
-    'show'
-]);
-
 
 //Route::get('/abc/{id}',[ManagerController::class,'abc'])->name('abc');
-
