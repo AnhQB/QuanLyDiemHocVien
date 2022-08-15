@@ -9,4 +9,15 @@ class DegreeMajor extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+
+    public function degree(){
+        return $this->belongsTo(Degree::class);
+    }
+
+    public function major(){
+        return $this->belongsTo(Major::class);
+    }
+
+
 }

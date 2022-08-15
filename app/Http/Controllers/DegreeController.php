@@ -50,7 +50,7 @@ class DegreeController extends Controller
         $this->model->create($request->except('_token'));
         return redirect()
             ->route("$this->table.index")
-            -> with('success','Đã thêm thành công');;
+            -> with('success','Đã thêm thành công');
     }
 
 

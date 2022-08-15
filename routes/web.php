@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DegreeController;
+use App\Http\Controllers\DegreeMajorController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ManagerController;
@@ -48,6 +49,9 @@ Route::resource('managers', ManagerController::class)->except([
     'show'
 ]);
 Route::resource('admins', AdminController::class)->except([
+    'show'
+]);
+Route::resource('degree_majors', DegreeMajorController::class)->except([
     'show'
 ]);
 
