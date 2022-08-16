@@ -20,7 +20,7 @@
                         <td>
                             @foreach($data as $each2)
                                 @if($each2 -> degree_id  === $each->id)
-                                    {{$each2->major->name}}
+                                    <a href="{{route('curriculums.show', $each2->major_id)}}" >{{$each2->major->name}}</a>
                                     <br>
                                 @endif
                             @endforeach

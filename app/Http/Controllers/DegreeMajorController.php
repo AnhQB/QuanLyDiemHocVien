@@ -69,7 +69,6 @@ class DegreeMajorController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->major_id);
         $data = [];
         foreach($request->major_id as $item){
             $data[]= [

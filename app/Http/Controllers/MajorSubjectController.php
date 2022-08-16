@@ -5,17 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\MajorSubject;
 use App\Http\Requests\StoreMajorSubjectRequest;
 use App\Http\Requests\UpdateMajorSubjectRequest;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 class MajorSubjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private Builder $model;
+    private string $table;
+
+    public function __construct()
+    {
+        $this->model = (new MajorSubject())->query();
+
+
+        $routeName = Route::currentRouteName();
+        $arr = explode('.', $routeName);
+        $arr = array_map('ucfirst', $arr);
+        $this->table = $arr[0];
+        $title = implode(' - ', $arr);
+
+        View::share('title', $title);
+    }
+
     public function index()
     {
-        //
+
     }
 
     /**
@@ -39,15 +54,15 @@ class MajorSubjectController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\MajorSubject  $majorSubject
-     * @return \Illuminate\Http\Response
-     */
-    public function show(MajorSubject $majorSubject)
+    public function show( $majorSubject)
     {
-        //
+        $data = $this->model
+                ->where('major_id',$majorSubject)
+                ->get();
+
+        return view("admin.$this->table.show", [
+            'data' => $data,
+        ]);
     }
 
     /**

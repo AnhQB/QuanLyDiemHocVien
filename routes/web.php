@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CurriculumController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DegreeController;
 use App\Http\Controllers\DegreeMajorController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\MajorSubjectController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
@@ -22,9 +25,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layout.master');
-});
+//Route::get('/', function () {
+//    return view('layout.master');
+//});
 
 
 
@@ -54,6 +57,10 @@ Route::resource('admins', AdminController::class)->except([
 Route::resource('degree_majors', DegreeMajorController::class)->except([
     'show'
 ]);
+Route::resource('curriculums', MajorSubjectController::class);
+
+Route::get('/', [DashboardController::class, 'index'])->name('dashboards');
+
 
 
 //Route::get('/abc/{id}',[ManagerController::class,'abc'])->name('abc');

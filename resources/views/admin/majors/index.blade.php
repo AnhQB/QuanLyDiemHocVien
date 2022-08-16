@@ -14,7 +14,7 @@
                 @foreach($data as $each)
                     <tr>
                         <td>{{$each->id}}</td>
-                        <td>{{$each->name}}</td>
+                        <td><a href="{{route("curriculums.show", $each->id)}}">{{$each->name}}</a></td>
                     </tr>
                 @endforeach
                 </tbody>
