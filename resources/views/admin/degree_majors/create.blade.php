@@ -44,7 +44,7 @@
         <br>
         <div class="card-footer">
             <button type="submit" class="btn btn-info btn-fill">Thêm Mới</button>
-
+        </div>
         </div>
     </form>
 

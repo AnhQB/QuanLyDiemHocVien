@@ -138,7 +138,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('degree_majors.index')}}">
+                                <a href="{{route('curriculums.index')}}">
                                     <span class="sidebar-mini">M2</span>
                                     <span class="sidebar-normal">Add New Curriculum Manage</span>
                                 </a>
