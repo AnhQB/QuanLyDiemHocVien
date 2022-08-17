@@ -77,7 +77,7 @@
             </li>
             <li>
                 <a data-toggle="collapse" href="#accountmanage" class="collapsed" aria-expanded="false">
-                    <i class="ti-panel"></i>
+                    <i class="ti-user"></i>
                     <p>Account Manage
                         <b class="caret"></b>
                     </p>
@@ -101,7 +101,7 @@
             </li>
             <li>
                 <a data-toggle="collapse" href="#degreemanage" class="collapsed" aria-expanded="false">
-                    <i class="ti-panel"></i>
+                    <i class="ti-agenda" ></i>
                     <p>Degree Manage
                         <b class="caret"></b>
                     </p>
@@ -115,7 +115,7 @@
                             </li>
                             <li>
                                 <a href="{{route('degree_majors.index')}}">
-                                    <span class="sidebar-mini">A2</span>
+                                    <span class="sidebar-mini">D2</span>
                                     <span class="sidebar-normal">Degree Major Manage</span>
                                 </a>
                             </li>
@@ -125,7 +125,7 @@
             </li>
             <li>
                 <a data-toggle="collapse" href="#majormanage" class="collapsed" aria-expanded="false">
-                    <i class="ti-panel"></i>
+                    <i class="ti-agenda"></i>
                     <p>Major Manage
                         <b class="caret"></b>
                     </p>
@@ -149,20 +149,20 @@
             </li>
             <li>
                 <a href="{{route('subjects.index')}}" >
-                    <i class="ti-panel"></i>
+                    <i class="ti-view-list"></i>
                     <p>Subject Manage</p>
                 </a>
             </li>
             <li>
                 <a href="{{route('students.index')}}" >
-                    <i class="ti-panel"></i>
+                    <i class="ti-view-list"></i>
                     <p>Student Manage</p>
                 </a>
             </li>
 
             <li>
                 <a data-toggle="collapse" href="#groupmanage" class="collapsed" aria-expanded="false">
-                    <i class="ti-panel"></i>
+                    <i class="ti-view-list"></i>
                     <p>Group Manage
                         <b class="caret"></b>
                     </p>

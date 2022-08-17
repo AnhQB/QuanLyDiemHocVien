@@ -7,10 +7,10 @@
                 <thead>
                 <tr>
                     <th>STT</th>
-                    <th>#</th>
+                    <th>Mã Môn</th>
                     <th>Các Môn</th>
                     <th>Khoá</th>
-                    <th>Chuyển Ngành</th>
+                    <th>Chuyên Ngành</th>
                 </tr>
                 </thead>
                 <tbody>

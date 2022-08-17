@@ -26,8 +26,8 @@ class MajorSubjectController extends Controller
 
         $routeName = Route::currentRouteName();
         $arr = explode('.', $routeName);
-        $arr = array_map('ucfirst', $arr);
         $this->table = $arr[0];
+        $arr = array_map('ucfirst', $arr);
         $title = implode(' - ', $arr);
 
         View::share('title', $title);
@@ -73,6 +73,7 @@ class MajorSubjectController extends Controller
                 ->with('subject')
                 ->select('subject_id','semester_major')
                 ->where('major_id', $major_id)
+                ->orderBy('semester_major', 'asc')
                 ->paginate(10)
                 ;
 
@@ -96,15 +97,33 @@ class MajorSubjectController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreMajorSubjectRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreMajorSubjectRequest $request)
+    public function store(Request $request)
     {
-        //
+        $major_id = $request->major_id;
+        $semester_major = $request->semester_major;
+        $subject_ids = $request->subject_ids;
+
+        $data = [];
+        foreach ($subject_ids as $subject_id)
+        {
+            $data[] = [
+                'major_id' => $major_id,
+                'subject_id' => $subject_id,
+                'semester_major' => $semester_major,
+            ];
+        }
+
+        $currentDegree = Degree::query()->where('id', $request->degree_id)->first();
+        $currentMajor = Major::query()->where('id', $major_id)->first();
+
+        $this->model->insert($data);
+
+        return redirect()
+                ->route("$this->table.index",[
+                    'currentDegree' => $currentDegree,
+                    'currentMajor' => $currentMajor,
+                ])
+                ->with('success', 'Đã thêm thành công');
     }
 
     public function show( $majorSubject)

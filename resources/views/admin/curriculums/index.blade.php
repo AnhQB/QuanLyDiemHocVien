@@ -1,4 +1,8 @@
 @extends('layout.master')
+@push('css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
+
 @section('content')
     <div class="row">
         <div class="col-lg-6 col-md-12">
@@ -39,7 +43,7 @@
                                                 selected
                                             @endif
                                         >
-                                            {{$val}}
+                                            {{$val}} ({{$key}})
                                         </option>
                                     @endforeach
                                 </select>
@@ -48,7 +52,7 @@
                                 <label class="control-label">
                                     Chọn Kỳ học:
                                 </label>
-                                <select name="sesmester_major">
+                                <select name="semester_major">
                                     @for($i = 1; $i <=9 ; $i++)
                                         <option value="{{$i}}">
                                             Kì {{$i}}
@@ -60,7 +64,7 @@
                                 <label class="control-label">
                                     Chọn Môn học:
                                 </label>
-                                <select name="subject_id">
+                                <select name="subject_ids[]" multiple id="select-subject">
                                     @foreach($subjects as $key => $val)
                                         <option value="{{$key}}">
                                             {{$val}}
@@ -118,6 +122,7 @@
 
 @endsection
 @push('js')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         function callChangeDisplay(id, type) {
             let degree_id = 0;
@@ -133,6 +138,11 @@
 
             window.location.href = "{{route('curriculums.index')}}?degree_id=" + degree_id + "&major_id="+ major_id;
         }
+
+        $(document).ready(function() {
+            console.log(1);
+            $('select-subject').select2();
+        });
     </script>
 
 @endpush
