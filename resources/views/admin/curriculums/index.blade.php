@@ -9,7 +9,12 @@
             <div class="card card-plain">
                 <div class="card-header">
                     <h4 class="card-title">Thêm Khung Chương Trình</h4>
-                    <a href="/" class="category">Thêm Khung Chương Trình nhanh hơn.. (click me)</a>
+                    <label for="csv"  href="/" class="category btn btn-simple">Thêm Khung Chương Trình nhanh hơn.. (click me)</label>
+                    <input type="file" name="csv" id="csv" style="display: none"
+                           accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                        {{--                            onchange="submitFileCSV(this)"--}}
+                    >
+
                 </div>
                 <form action="{{route('curriculums.store')}}" method="post">
                     @csrf
@@ -124,6 +129,7 @@
 @push('js')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
+
         function callChangeDisplay(id, type) {
             let degree_id = 0;
             let major_id = 0;
@@ -139,10 +145,49 @@
             window.location.href = "{{route('curriculums.index')}}?degree_id=" + degree_id + "&major_id="+ major_id;
         }
 
+{{--        function submitFileCSV(file){--}}
+{{--            console.log(file.files[0]);--}}
+{{--            let csv = document.getElementById("csv").files[0];--}}
+
+{{--            let req = new XMLHttpRequest();--}}
+{{--            let formData = new FormData();--}}
+
+
+{{--            formData.append("file", csv);--}}
+{{--            formData.append("_token", '{{csrf_token()}}');--}}
+{{--            req.open("POST", '{{route("curriculums.import_CSV")}}');--}}
+
+{{--            req.setRequestHeader("Accept", "application/json");--}}
+{{--            req.setRequestHeader("Content-Type", "application/json");--}}
+
+{{--            req.send(formData);--}}
+{{--        }--}}
+
         $(document).ready(function() {
-            console.log(1);
-            $('select-subject').select2();
+            $('#csv').change(function(event) {
+                var formData = new FormData();
+                formData.append('file', $(this)[0].files[0]);
+                formData.append('_token', '{{csrf_token()}}')
+                $.ajax({
+                    url: '{{route("curriculums.import_CSV")}}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    async: false,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function(response){
+                        console.log("success");
+
+                    },
+                    error: function(response){
+                        console.log(response['responseJSON'].error);
+                        alert(response['responseJSON'].error);
+                    }
+                })
+            });
         });
-    </script>
+</script>
 
 @endpush

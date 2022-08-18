@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\CurriculumImport;
 use App\Models\Degree;
 use App\Models\DegreeMajor;
 use App\Models\Major;
@@ -11,8 +12,10 @@ use App\Http\Requests\UpdateMajorSubjectRequest;
 use App\Models\Subject;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MajorSubjectController extends Controller
 {
@@ -87,14 +90,21 @@ class MajorSubjectController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function importCsv(Request $request): \Illuminate\Http\JsonResponse
     {
-        //
+        $file =  $request->file('file');
+        $fileName = $file->getClientOriginalName();
+        $dataImported = (new CurriculumImport)->fromFileName($fileName);
+        try {
+            Excel::import($dataImported,$file);
+        }catch (\Exception $e){
+            return response()->json(['error' => $e->getMessage()], 404);
+            //return;
+            //dd($e->getMessage());
+        }
+
+        //dd($dataImported->getData());
+
     }
 
     public function store(Request $request)
@@ -112,11 +122,12 @@ class MajorSubjectController extends Controller
                 'semester_major' => $semester_major,
             ];
         }
+        $this->model->insert($data);
 
         $currentDegree = Degree::query()->where('id', $request->degree_id)->first();
         $currentMajor = Major::query()->where('id', $major_id)->first();
 
-        $this->model->insert($data);
+
 
         return redirect()
                 ->route("$this->table.index",[

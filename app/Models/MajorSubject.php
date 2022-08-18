@@ -10,6 +10,12 @@ class MajorSubject extends Model
     use HasFactory;
     public $timestamps = false;
 
+    protected $fillable = [
+        'major_id',
+        'subject_id',
+        'semester_major',
+    ];
+
     public function major()
     {
         return $this->belongsTo(Major::class);

@@ -3,7 +3,8 @@
 @section('content')
     <div class="card">
         <div class="card-content">
-    <a href="{{route('students.create')}}">Create new</a>
+    <a href="{{route('students.create')}}">Thêm Mới</a> &emsp; | &emsp;
+    <a href="/">Thêm nhanh danh sách sinh viên</a>
     <table class="table table-centered mb-0">
         <thead>
         <tr>
