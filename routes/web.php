@@ -28,38 +28,91 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('layout.master');
 //});
-
-
-
-Route::resource('subjects', SubjectController::class)->except([
-    'show'
-]);
-
-Route::resource('degrees', DegreeController::class)->except([
-    'show'
-]);
-
-Route::resource('majors',MajorController::class)->except([
-   'show'
-]);
-
-Route::resource('students', StudentController::class);
-
-Route::resource('groups', GroupController::class)->except([
-    'show'
-]);
-Route::resource('managers', ManagerController::class)->except([
-    'show'
-]);
-Route::resource('admins', AdminController::class)->except([
-    'show'
-]);
-Route::resource('degree_majors', DegreeMajorController::class)->except([
-    'show'
-]);
-Route::resource('curriculums', MajorSubjectController::class);
-
 Route::get('/', [DashboardController::class, 'index'])->name('dashboards');
+
+Route::group([
+    'as' => 'subjects.',
+    'prefix' => 'subjects'
+], static function (){
+    Route::get('/', [SubjectController::class, 'index'])->name('index');
+    Route::get('/create', [SubjectController::class, 'create'])->name('create');
+    Route::post('/create', [SubjectController::class, 'store'])->name('store');
+});
+
+Route::group([
+    'as' => 'degrees.',
+    'prefix' => 'degrees'
+], static function (){
+    Route::get('/', [DegreeController::class, 'index'])->name('index');
+    Route::get('/create', [DegreeController::class, 'create'])->name('create');
+    Route::post('/create', [DegreeController::class, 'store'])->name('store');
+});
+
+Route::group([
+    'as' => 'majors.',
+    'prefix' => 'majors'
+], static function (){
+    Route::get('/', [MajorController::class, 'index'])->name('index');
+    Route::get('/create', [MajorController::class, 'create'])->name('create');
+    Route::post('/create', [MajorController::class, 'store'])->name('store');
+});
+
+Route::group([
+    'as' => 'students.',
+    'prefix' => 'students'
+], static function (){
+    Route::get('/', [StudentController::class, 'index'])->name('index');
+    Route::get('/create', [StudentController::class, 'create'])->name('create');
+    Route::get('/show/{id}', [StudentController::class, 'show'])->name('show');
+    Route::post('/create', [StudentController::class, 'store'])->name('store');
+});
+
+Route::group([
+    'as' => 'groups.',
+    'prefix' => 'groups'
+], static function (){
+    Route::get('/', [GroupController::class, 'index'])->name('index');
+    Route::get('/create', [GroupController::class, 'create'])->name('create');
+    Route::post('/create', [GroupController::class, 'store'])->name('store');
+});
+
+Route::group([
+    'as' => 'managers.',
+    'prefix' => 'managers'
+], static function (){
+    Route::get('/', [ManagerController::class, 'index'])->name('index');
+    Route::get('/create', [ManagerController::class, 'create'])->name('create');
+    Route::post('/create', [ManagerController::class, 'store'])->name('store');
+});
+
+Route::group([
+    'as' => 'admins.',
+    'prefix' => 'admins'
+], static function (){
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('/create', [AdminController::class, 'create'])->name('create');
+    Route::post('/create', [AdminController::class, 'store'])->name('store');
+});
+
+Route::group([
+    'as' => 'degree_majors.',
+    'prefix' => 'degree_majors'
+], static function (){
+    Route::get('/', [DegreeMajorController::class, 'index'])->name('index');
+    Route::get('/create', [DegreeMajorController::class, 'create'])->name('create');
+    Route::post('/create', [DegreeMajorController::class, 'store'])->name('store');
+});
+
+Route::group([
+    'as' => 'curriculums.',
+    'prefix' => 'curriculums'
+], static function (){
+    Route::get('/', [MajorSubjectController::class, 'index'])->name('index');
+    Route::get('/show/{majorSubject}', [MajorSubjectController::class, 'show'])->name('show');
+    Route::post('/create', [MajorSubjectController::class, 'store'])->name('store');
+    Route::post('/import-csv', [MajorSubjectController::class, 'importCsv'])->name('import_CSV');
+});
+
 
 
 
