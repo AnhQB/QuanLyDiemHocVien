@@ -98,13 +98,18 @@ class MajorSubjectController extends Controller
         try {
             Excel::import($dataImported,$file);
         }catch (\Exception $e){
-            return response()->json(['error' => $e->getMessage()], 404);
+
+            return response()->json(array(
+                'data' => $e->getMessage(),
+            ), 404);
             //return;
             //dd($e->getMessage());
         }
-
         //dd($dataImported->getData());
-
+        return response()->json(array(
+            'success' => true,
+            'data' => 'Đã thêm file csv thành công',
+        ));
     }
 
     public function store(Request $request)

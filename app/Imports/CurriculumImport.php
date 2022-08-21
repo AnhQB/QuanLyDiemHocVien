@@ -19,8 +19,11 @@ class CurriculumImport implements ToArray, WithHeadingRow
 
         $originFileName = basename($this->fileName, ".csv");
         $arr = explode('_', $originFileName);
-        if(Major::query()->where('name', $arr[0])->doesntExist()){
-            throw new \RuntimeException('Tên chuyên ngành không tìm thấy');
+        if(Major::query()
+            ->where('name', $arr[0])
+            ->where('id', $arr[1])
+            ->doesntExist()){
+            throw new \RuntimeException('Chuyên ngành không tìm thấy');
         }
 
         foreach ($array as $each){
@@ -28,7 +31,7 @@ class CurriculumImport implements ToArray, WithHeadingRow
             $subject_id = $each['subject_id'];
             $semester_major = $each['semester_major'];
 
-            MajorSubject::query()->create([
+            MajorSubject::query()->updateOrCreate([
                 'major_id' => $major_id,
                 'subject_id' => $subject_id,
                 'semester_major' => $semester_major,

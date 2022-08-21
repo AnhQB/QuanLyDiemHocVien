@@ -4,6 +4,14 @@
 @endpush
 
 @section('content')
+    <div class="col-12">
+        <div class="alert alert-success" id="msg-success" style="display: none">
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="alert alert-danger" id="msg-error" style="display: none">
+        </div>
+    </div>
     <div class="row">
         <div class="col-lg-6 col-md-12">
             <div class="card card-plain">
@@ -178,12 +186,16 @@
                     processData: false,
                     contentType: false,
                     success: function(response){
-                        console.log("success");
-
+                        //console.log(response['data']);
+                        $("#msg-success").show();
+                        $("#msg-success").html(response['data']);
+                        $("#msg-success").fadeOut(5000);
                     },
                     error: function(response){
-                        console.log(response['responseJSON'].error);
-                        alert(response['responseJSON'].error);
+                        console.log(response);
+                        $("#msg-error").show();
+                        $("#msg-error").html(response['responseJSON'].data);
+                        $("#msg-error").fadeOut(5000);
                     }
                 })
             });
