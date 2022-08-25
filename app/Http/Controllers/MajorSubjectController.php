@@ -98,7 +98,6 @@ class MajorSubjectController extends Controller
         try {
             Excel::import($dataImported,$file);
         }catch (\Exception $e){
-
             return response()->json(array(
                 'data' => $e->getMessage(),
             ), 404);

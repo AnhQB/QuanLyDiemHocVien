@@ -175,7 +175,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('degree_majors.index')}}">
+                                <a href="{{route('student_groups.index')}}">
                                     <span class="sidebar-mini">G2</span>
                                     <span class="sidebar-normal">Add Student Groups</span>
                                 </a>

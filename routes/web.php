@@ -10,6 +10,7 @@ use App\Http\Controllers\MajorController;
 use App\Http\Controllers\MajorSubjectController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentGroupController;
 use App\Http\Controllers\SubjectController;
 use App\Models\Degree;
 use Illuminate\Support\Facades\Route;
@@ -111,6 +112,14 @@ Route::group([
     Route::get('/show/{majorSubject}', [MajorSubjectController::class, 'show'])->name('show');
     Route::post('/create', [MajorSubjectController::class, 'store'])->name('store');
     Route::post('/import-csv', [MajorSubjectController::class, 'importCsv'])->name('import_CSV');
+});
+
+Route::group([
+    'as' => 'student_groups.',
+    'prefix' => 'student_groups'
+], static function (){
+    Route::get('/', [StudentGroupController::class, 'index'])->name('index');
+    Route::post('/filter', [StudentGroupController::class, 'apiFilter'])->name('api_Filter');
 });
 
 

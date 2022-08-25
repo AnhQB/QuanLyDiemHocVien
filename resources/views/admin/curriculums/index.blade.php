@@ -172,6 +172,7 @@
 {{--        }--}}
 
         $(document).ready(function() {
+            $('#select-subject').select2();
             $('#csv').change(function(event) {
                 var formData = new FormData();
                 formData.append('file', $(this)[0].files[0]);
@@ -192,10 +193,10 @@
                         $("#msg-success").fadeOut(5000);
                     },
                     error: function(response){
-                        console.log(response);
+                        console.log(response['responseJSON'].data);
                         $("#msg-error").show();
                         $("#msg-error").html(response['responseJSON'].data);
-                        $("#msg-error").fadeOut(5000);
+                        $("#msg-error").fadeOut(10000);
                     }
                 })
             });
