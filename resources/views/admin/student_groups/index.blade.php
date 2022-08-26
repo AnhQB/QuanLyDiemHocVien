@@ -21,8 +21,8 @@
                 <form action="{{route('curriculums.store')}}" method="post">
                     @csrf
                     <div class="card-content">
-                        <div class="panel-group" id="accordion">
-                            <div class="panel panel-border panel-default">
+                        <div class="panel-group" id="div-filter" >
+                            <div class="panel panel-border panel-default" id="div-select-degree">
                                 <label class="control-label">
                                     Chọn Khoá:
                                 </label>
@@ -57,7 +57,7 @@
 
                 </div>
                 <div class="card-content table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="table-list-student">
                         <thead>
                         <tr>
                             <th>STT</th>

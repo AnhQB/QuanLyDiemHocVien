@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Degree;
-use App\Models\Group;
-use App\Models\Major;
 use App\Http\Requests\StoreStudentGroupRequest;
 use App\Http\Requests\UpdateStudentGroupRequest;
+use App\Models\DegreeMajor;
+use App\Models\Group;
 use App\Models\StudentGroup;
 use App\Models\Subject;
 use Illuminate\Database\Eloquent\Builder;
@@ -53,7 +53,6 @@ class StudentGroupController extends Controller
 
         $data = [];
 
-
         //get step choose
         //switch
         switch ($current_step) {
@@ -61,37 +60,56 @@ class StudentGroupController extends Controller
             //get arr majors
             //next
             case 1:
-
+                $majors = DegreeMajor::query()
+                    ->select('major_id')
+                    ->with('major')
+                    ->where('degree_id', $current_degree_id)
+                    ->get();
+                $data['majors'] = $majors;
                 break;
 
             //2: choose major: current major != null
             //get arr groups
             case 2:
-                dd(2);
+                $groups = Group::query()
+                    ->select('id')
+                    ->distinct()
+                    ->where([
+                        ['degree_id', $current_degree_id],
+                        ['major_id', $current_major_id],
+                    ])
+                    ->get();
+                $data['groups'] = $groups;
                 break;
             //3: choose group: current group != null
             //get arr subjects
             case 3:
-                dd(3);
+                $subjects = Group::query()
+                    ->select('subject_id')
+                    ->with('subject')
+                    ->where([
+                        ['degree_id', $current_degree_id],
+                        ['major_id', $current_major_id],
+                        ['id', $current_group_id],
+                    ])
+                    ->get();
+                $data['subjects'] = $subjects;
                 break;
             //4:
             //get list student by group_id, subject_id
             case 4:
-                dd(4);
+                $listStudent = $this->model
+                    ->select('student_id')
+                    ->with('student')
+                    ->where([
+                        ['group_id', $current_group_id],
+                        ['subject_id', $current_subject_id],
+                    ])
+                    ->get();
+                $data['listStudent'] = $listStudent;
                 break;
         }
 
-        $majors = Major::query()
-            ->pluck('name', 'id')
-            ->toArray();
-
-        $groups = Group::query()
-            ->select('id')
-            ->distinct()
-            ->where([
-                ['degree_id', $current_degree_id],
-                ['major_id', $current_major_id],
-            ]);
 
         $subjects = Subject::query()
             ->pluck('name', 'id')
