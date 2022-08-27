@@ -16,7 +16,6 @@ class CurriculumImport implements ToArray, WithHeadingRow
 
     public function array(array $array): void
     {
-
         $originFileName = basename($this->fileName, ".csv");
         $arr = explode('_', $originFileName);
         if (Major::query()

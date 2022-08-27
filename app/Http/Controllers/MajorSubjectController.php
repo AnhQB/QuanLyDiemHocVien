@@ -7,12 +7,10 @@ use App\Models\Degree;
 use App\Models\DegreeMajor;
 use App\Models\Major;
 use App\Models\MajorSubject;
-use App\Http\Requests\StoreMajorSubjectRequest;
 use App\Http\Requests\UpdateMajorSubjectRequest;
 use App\Models\Subject;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Maatwebsite\Excel\Facades\Excel;
@@ -94,13 +92,13 @@ class MajorSubjectController extends Controller
     {
         $file =  $request->file('file');
         $fileName = $file->getClientOriginalName();
-        $dataImported = (new CurriculumImport)->fromFileName($fileName);
+        $dataImport = (new CurriculumImport)->fromFileName($fileName);
         try {
-            Excel::import($dataImported,$file);
+            Excel::import($dataImport, $file);
         }catch (\Exception $e){
             return response()->json(array(
                 'data' => $e->getMessage(),
-            ), 404);
+            ), 400);
             //return;
             //dd($e->getMessage());
         }

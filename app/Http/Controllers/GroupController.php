@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Group\StoreGroupRequest;
 use App\Http\Requests\Group\UpdateGroupRequest;
 use App\Models\Degree;
+use App\Models\DegreeMajor;
 use App\Models\Group;
 use App\Models\Major;
 use App\Models\Subject;
@@ -66,10 +67,22 @@ class GroupController extends Controller
 
     public function store(StoreGroupRequest $request)
     {
-        $this->model -> create($request -> except('_token'));
+        if(DegreeMajor::query()
+            ->where([
+                ['degree_id', $request->degree_id],
+                ['major_id', $request->major_id],
+            ])
+            ->doesntExist()
+        ){
+            return redirect()
+                -> route("$this->table.create")
+                -> with('error', '');
+        }
+        //check major with subject exist or not
+        $this -> model -> create($request -> except('_token'));
         return redirect()
-            ->route("$this->table.index")
-            -> with('success','Đã thêm thành công');;
+            -> route("$this->table.index")
+            -> with('success','Đã thêm thành công');
     }
 
     /**

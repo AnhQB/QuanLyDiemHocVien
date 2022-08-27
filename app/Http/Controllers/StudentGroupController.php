@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\StudentGroupImport;
 use App\Models\Degree;
 use App\Http\Requests\StoreStudentGroupRequest;
 use App\Http\Requests\UpdateStudentGroupRequest;
 use App\Models\DegreeMajor;
 use App\Models\Group;
+use App\Models\Student;
 use App\Models\StudentGroup;
 use App\Models\Subject;
+use http\Env\Response;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
+use Maatwebsite\Excel\Facades\Excel;
 use PHPUnit\TextUI\XmlConfiguration\Groups;
 
 class StudentGroupController extends Controller
@@ -110,16 +114,48 @@ class StudentGroupController extends Controller
                 break;
         }
 
-
-        $subjects = Subject::query()
-            ->pluck('name', 'id')
-            ->toArray();
-
-
         return response()->json([
             'success' => true,
             'data' => $data,
         ]);
+    }
+
+    public function importCsv(Request $request){
+        $file = $request -> file('file');
+        $fileName = $file -> getClientOriginalName();
+        $originFileName = basename($fileName, ".csv");
+
+        $import = (new StudentGroupImport())->fromFileName($originFileName);
+        try {
+            Excel::import($import, $file);
+        }catch (\Exception $e){
+            return response()
+                ->json([
+                    'success' => false,
+                    'data' => $e->getMessage(),
+                ],404);
+        }
+
+        $arr = explode('_', $originFileName);
+
+        $listStudent = $this->model
+                ->select('student_id')
+                ->with('student')
+                ->whereIn('student_id', $import -> getData())
+                ->where([
+                    ['group_id', $arr[2]],
+                    ['subject_id', $arr[3]],
+                ])
+                ->get();
+
+        return response()
+            ->json([
+                'success' => true,
+                'data' => [
+                    'message' => 'Đã thêm file csv thành công',
+                    'listStudent' => $listStudent,
+                ]
+            ]);
     }
 
     public function create()

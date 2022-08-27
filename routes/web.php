@@ -120,6 +120,8 @@ Route::group([
 ], static function (){
     Route::get('/', [StudentGroupController::class, 'index'])->name('index');
     Route::post('/filter', [StudentGroupController::class, 'apiFilter'])->name('api_Filter');
+    Route::post('/import-csv', [StudentGroupController::class, 'importCsv'])->name('import_CSV');
+
 });
 
 
