@@ -1,23 +1,31 @@
 $(document).ready(function() {
     //$('#select-subject').select2();
     $('#card-content-bottom').hide();
-    $('#select-degree').change(function(){
-        callChangeDisplay(1);
+    $('#select-degree').click(function(event){
+        if(this == event.target){
+            callChangeDisplay(1);
+        }
     });
     // $('#select-major').on("click",'option', function(){
     //     alert("new link clicked!");
     //     //callChangeDisplay(2);
     // });
-    $(document).on("change", '#select-major', function(event) {
-        callChangeDisplay(2);
+    $(document).on("click", '#select-major', function(event) {
+        if(this == event.target){
+            callChangeDisplay(2);
+        }
 
     });
-    $(document).on("change", '#select-group', function(event) {
-        callChangeDisplay(3);
+    $(document).on("click", '#select-group', function(event) {
 
+        if(this == event.target){
+            callChangeDisplay(3);
+        }
     });
-    $(document).on("change", '#select-subject', function(event) {
-        callChangeDisplay(4);
+    $(document).on("click", '#select-subject', function(event) {
+        if(this == event.target){
+            callChangeDisplay(4);
+        }
 
     });
     const _token = $('meta[name="_token"]').attr('content')

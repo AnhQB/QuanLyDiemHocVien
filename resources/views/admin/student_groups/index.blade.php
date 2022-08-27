@@ -16,7 +16,7 @@
         <div class="col-lg-6 col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Thêm danh sách sinh viên trong lớp</h4>
+                    <h4 class="card-title">Danh sách sinh viên trong lớp</h4>
                 </div>
                 <form action="{{route('curriculums.store')}}" method="post">
                     @csrf
@@ -29,7 +29,7 @@
                                 </label>
                                 <select id="select-degree" name="degree_id">
                                     @foreach($degrees as $key => $val)
-                                        <option
+                                        <option class="optionselect"
                                             value="{{$key}}"
                                             {{--                                            @if()--}}
                                             {{--                                                selected--}}
@@ -172,6 +172,6 @@
 @endsection
 @push('js')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="{{asset('js/js.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/js_indexStudentGroup.js')}}" type="text/javascript"></script>
 
 @endpush
