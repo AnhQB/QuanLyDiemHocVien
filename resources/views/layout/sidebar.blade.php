@@ -185,6 +185,31 @@
                 </a>
             </li>
 
+            <li>
+                <a data-toggle="collapse" href="#grademanage" class="collapsed" aria-expanded="false">
+                    <i class="ti-view-list"></i>
+                    <p>Grade Manage
+                        <b class="caret"></b>
+                    </p>
+                    <div class="collapse" id="grademanage" aria-expanded="false" style="">
+                        <ul class="nav">
+                            <li>
+                                <a href="{{route('grades.index')}}">
+                                    <span class="sidebar-mini">G1</span>
+                                    <span class="sidebar-normal">Grade View</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('student_groups.index')}}">
+                                    <span class="sidebar-mini">G2</span>
+                                    <span class="sidebar-normal">Import Grade</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </a>
+            </li>
+
         </ul>
         <div class="ps-scrollbar-x-rail" style="width: 260px; left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 186px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 153px;"></div></div></div>
 </div>

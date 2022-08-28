@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CurriculumController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DegreeController;
 use App\Http\Controllers\DegreeMajorController;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\MajorSubjectController;
@@ -121,8 +121,18 @@ Route::group([
     Route::get('/', [StudentGroupController::class, 'index'])->name('index');
     Route::post('/filter', [StudentGroupController::class, 'apiFilter'])->name('api_Filter');
     Route::post('/import-csv', [StudentGroupController::class, 'importCsv'])->name('import_CSV');
-
 });
+
+Route::group([
+    'as' => 'grades.',
+    'prefix' => 'grades'
+], static function (){
+    Route::get('/', [GradeController::class, 'index'])->name('index');
+    Route::get('/import-grade', [GradeController::class, 'importGrade'])->name('import_Grade');
+    Route::post('/filter', [GradeController::class, 'apiFilter'])->name('api_Filter');
+});
+
+
 
 
 
