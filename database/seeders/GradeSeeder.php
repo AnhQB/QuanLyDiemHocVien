@@ -38,6 +38,7 @@ class GradeSeeder extends Seeder
                     'semester_year' => 'Spring2022',
                     'time' => 1,
                     'grade' => random_int(50,100)/10,
+                    'slot' => random_int(1,6),
                 ];
                 Grade::create($data);
             }

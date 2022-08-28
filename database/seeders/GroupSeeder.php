@@ -68,6 +68,7 @@ class GroupSeeder extends Seeder
                                 'subject_id' => $key,
                                 'degree_id' => '1',
                                 'major_id' => '1',
+                                'semester_year' => 'Spring2022',
                             ];
                             Group::create($data);
                         }
@@ -95,6 +96,7 @@ class GroupSeeder extends Seeder
                                 'subject_id' => $key,
                                 'degree_id' => '1',
                                 'major_id' => '2',
+                                'semester_year' => 'Spring2022',
 
                             ];
                             Group::create($data);
@@ -125,6 +127,7 @@ class GroupSeeder extends Seeder
                                 'subject_id' => $key,
                                 'degree_id' => '2',
                                 'major_id' => '1',
+                                'semester_year' => 'Spring2022',
 
                             ];
                             Group::create($data);
@@ -152,6 +155,7 @@ class GroupSeeder extends Seeder
                                 'subject_id' => $key,
                                 'degree_id' => '2',
                                 'major_id' => '2',
+                                'semester_year' => 'Spring2022',
 
                             ];
                             Group::create($data);
@@ -182,6 +186,7 @@ class GroupSeeder extends Seeder
                                 'subject_id' => $key,
                                 'degree_id' => '3',
                                 'major_id' => '1',
+                                'semester_year' => 'Spring2022',
 
                             ];
                             Group::create($data);
@@ -209,6 +214,7 @@ class GroupSeeder extends Seeder
                                 'subject_id' => $key,
                                 'degree_id' => '3',
                                 'major_id' => '2',
+                                'semester_year' => 'Spring2022',
 
                             ];
                             Group::create($data);
