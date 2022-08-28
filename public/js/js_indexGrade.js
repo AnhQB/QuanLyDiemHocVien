@@ -21,6 +21,17 @@ $(document).ready(function() {
         }
     });
 
+    $(document).on("click", '#select-semester-year', function(event) {
+        if(this == event.target){
+            callChangeDisplay(4);
+        }
+    });
+    $(document).on("click", '#select-group', function(event) {
+        if(this == event.target){
+            callChangeDisplay(5);
+        }
+    });
+
     function callChangeDisplay(step){
         let $data = {};
         switch (step) {
@@ -28,7 +39,7 @@ $(document).ready(function() {
                 //remove
                 removeTagFilter(step);
                 //
-                let $degree_id = $('#select-degree').val();
+                var $degree_id = $('#select-degree').val();
 
                 $data['degree_id'] = $degree_id;
                 $data['step'] = step;
@@ -55,9 +66,35 @@ $(document).ready(function() {
             case 2:
                 removeTagFilter(step);
 
-                let $major_id = $('#select-major').val();
+                var $major_id = $('#select-major').val();
                 console.log($major_id);
                 $data['major_id'] = $major_id;
+                $data['step'] = step;
+                $.ajax({
+                    url: 'grades/filter',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        data: $data,
+                        _token: _token,
+                    },
+                    success: function(response){
+                        //console.log(response['data']);
+                        addNewTagFilter(response, step);
+                    },
+                    error: function(response){
+                        // console.log(response['responseJSON'].data);
+                        $("#msg-error").show();
+                    }
+                })
+                break;
+            case 3:
+                removeTagFilter(step);
+
+                var $subject_id = $('#select-subject').val();
+                var $degree_id = $('#select-degree').val();
+                $data['subject_id'] = $subject_id;
+                $data['degree_id'] = $degree_id;
                 $data['step'] = step;
                 $.ajax({
                     url: 'grades/filter',
@@ -79,13 +116,17 @@ $(document).ready(function() {
                     }
                 })
                 break;
-            case 3:
+            case 4:
                 removeTagFilter(step);
 
-                let $subject_id = $('#select-subject').val();
-                let $degree_id2 = $('#select-degree').val();
+                var $degree_id = $('#select-degree').val();
+                var $major_id = $('#select-major').val();
+                var $subject_id = $('#select-subject').val();
+                var $semester_year = $('#select-semester-year').val();
+                $data['degree_id'] = $degree_id;
+                $data['major_id'] = $major_id;
                 $data['subject_id'] = $subject_id;
-                $data['degree_id'] = $degree_id2;
+                $data['semester_year'] = $semester_year;
                 $data['step'] = step;
                 $.ajax({
                     url: 'grades/filter',
@@ -98,6 +139,40 @@ $(document).ready(function() {
                     success: function(response){
                         console.log(response['data']);
                         addNewTagFilter(response, step);
+                    },
+                    error: function(response){
+                        // console.log(response['responseJSON'].data);
+                        $("#msg-error").show();
+                        $("#msg-error").html(response['responseJSON'].data);
+                        $("#msg-error").fadeOut(10000);
+                    }
+                })
+                break;
+            case 5:
+                //removeTagFilter(step);
+
+                var $degree_id = $('#select-degree').val();
+                var $major_id = $('#select-major').val();
+                var $subject_id = $('#select-subject').val();
+                var $semester_year = $('#select-semester-year').val();
+                var $group_id = $('#select-group').val();
+                $data['degree_id'] = $degree_id;
+                $data['major_id'] = $major_id;
+                $data['subject_id'] = $subject_id;
+                $data['semester_year'] = $semester_year;
+                $data['group_id'] = $group_id;
+                $data['step'] = step;
+                $.ajax({
+                    url: 'grades/filter',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        data: $data,
+                        _token: _token,
+                    },
+                    success: function(response){
+                        console.log(response['data']);
+                        //addNewTagFilter(response, step);
                     },
                     error: function(response){
                         // console.log(response['responseJSON'].data);
@@ -125,6 +200,9 @@ $(document).ready(function() {
             $('#div-select-semester-year').remove();
             $('#div-select-group').remove();
             $('#card-content-bottom').hide();
+        }else if(step == 4){
+            $('#div-select-group').remove();
+            $('#card-content-bottom').hide();
         }
     }
 
@@ -147,6 +225,11 @@ $(document).ready(function() {
                 $data = response['data'].semester_years;
                 $labelName = "Chọn Kỳ";
                 $name = "semester-year";
+                break;
+            case 4:
+                $data = response['data'].groups;
+                $labelName = "Chọn Lớp";
+                $name = "group";
                 break;
         }
         let $divFilter = $('#div-filter');
@@ -177,6 +260,12 @@ $(document).ready(function() {
                     $selectTag.append($("<option></option>")
                         .attr("value", $data[i].semester_year)
                         .text($data[i].semester_year)
+                    );
+                    break;
+                case 4:
+                    $selectTag.append($("<option></option>")
+                        .attr("value", $data[i].id)
+                        .text($data[i].id)
                     );
                     break;
 

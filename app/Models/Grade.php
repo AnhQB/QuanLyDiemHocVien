@@ -17,4 +17,8 @@ class Grade extends Model
     {
         return $this->belongsTo(Subject::class,'exam_type');
     }
+
+    public function student(){
+        return $this->belongsTo(Student::class);
+    }
 }
