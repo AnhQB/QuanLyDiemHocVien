@@ -128,11 +128,7 @@ class GradeController extends Controller
                                     ->get();
 
                 $list = $this->model
-                        ->select([
-                            'student_id',
-                            'grade',
-                            'status',
-                        ])
+                    ->selectRaw("grades.student_id, grades.`status`, GROUP_CONCAT(grade SEPARATOR ' | ') AS grade")
                         ->with(['student' => function ($query) use ($major_id, $degree_id) {
                             $query->where([
                                ['major_id', $major_id],
@@ -144,6 +140,10 @@ class GradeController extends Controller
                             ['semester_year', $semester_year],
                         ])
                         ->whereIn('student_id', $listStudentInGroup)
+                        ->groupBy([
+                            'grades.student_id',
+                            'grades.status'
+                        ])
                         ->get();
 
                 $statusGradeName = StatusGradeEnum::getArrayStatus();

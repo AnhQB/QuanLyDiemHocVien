@@ -63,7 +63,7 @@
                             <th>STT</th>
                             <th>ID sinh viên</th>
                             <th>Họ và tên</th>
-                            <th>Điểm</th>
+                            <th>Điểm (Lý thuyết | Thực hành)</th>
                             <th>Trạng thái</th>
                         </tr>
                         </thead>

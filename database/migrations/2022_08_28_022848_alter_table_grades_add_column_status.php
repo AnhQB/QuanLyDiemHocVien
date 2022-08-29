@@ -15,7 +15,7 @@ class AlterTableGradesAddColumnStatus extends Migration
     {
         if(!Schema::hasColumn('grades','status')){
             Schema::table('grades', function (Blueprint $table) {
-                    $table->smallInteger('status')->after('slot')->default(1)->comment('StatusGradeExam');
+                    $table->smallInteger('status')->after('grade')->default(1)->comment('StatusGradeExam');
             });
         }
 

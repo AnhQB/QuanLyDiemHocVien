@@ -31,6 +31,17 @@ class GradeSeeder extends Seeder
 
             foreach($subjects_student as $subject){
                 $exam_type = $this->FindExamType($subject, $subjects);
+                if($exam_type == 2){
+                    $data1 = [
+                        'student_id' => $k,
+                        'subject_id' => $subject,
+                        'exam_type' => 1,
+                        'semester_year' => 'Spring2022',
+                        'time' => 1,
+                        'grade' => random_int(50,100)/10,
+                    ];
+                    Grade::create($data1);
+                }
                 $data = [
                     'student_id' => $k,
                     'subject_id' => $subject,
@@ -38,7 +49,6 @@ class GradeSeeder extends Seeder
                     'semester_year' => 'Spring2022',
                     'time' => 1,
                     'grade' => random_int(50,100)/10,
-                    'slot' => random_int(1,6),
                 ];
                 Grade::create($data);
             }
