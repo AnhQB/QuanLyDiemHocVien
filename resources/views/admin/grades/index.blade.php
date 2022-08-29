@@ -60,9 +60,11 @@
                     <table class="table table-striped" id="table-list-student">
                         <thead>
                         <tr>
+                            <th>STT</th>
                             <th>ID sinh viên</th>
                             <th>Họ và tên</th>
                             <th>Điểm</th>
+                            <th>Trạng thái</th>
                         </tr>
                         </thead>
                         <tbody>

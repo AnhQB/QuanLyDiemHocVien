@@ -16,7 +16,7 @@
                     <tr>
                         <td>{{$index+1}}</td>
                         <td>{{$each->name}}</td>
-                        <td>{{$each->exam_type}}</td>
+                        <td>{{$each->exam_type_name}}</td>
                     </tr>
                 @endforeach
                 </tbody>

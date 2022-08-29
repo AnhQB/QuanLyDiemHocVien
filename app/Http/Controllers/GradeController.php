@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\StatusGradeEnum;
 use App\Models\Degree;
 use App\Models\DegreeMajor;
 use App\Models\Grade;
@@ -31,7 +32,9 @@ class GradeController extends Controller
         $arr = array_map('ucfirst', $arr);
         $title = implode(' - ', $arr);
 
+
         View::share('title', $title);
+
     }
 
     public function index()
@@ -142,7 +145,11 @@ class GradeController extends Controller
                         ])
                         ->whereIn('student_id', $listStudentInGroup)
                         ->get();
+
+                $statusGradeName = StatusGradeEnum::getArrayStatus();
+
                 $data['listStudent'] = $list;
+                $data['statusGradeName'] = $statusGradeName;
                 break;
         }
 

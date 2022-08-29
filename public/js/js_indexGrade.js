@@ -172,6 +172,7 @@ $(document).ready(function() {
                     },
                     success: function(response){
                         console.log(response['data']);
+                        printListStudent(response);
                         //addNewTagFilter(response, step);
                     },
                     error: function(response){
@@ -310,18 +311,29 @@ $(document).ready(function() {
         })
     })
 
-    function printListStudent(listStudent){
+    function printListStudent(response){
         $('#card-content-bottom').show();
-        var $data = listStudent;
+        var $listStudent = response['data'].listStudent;
+        var $statusGradeName = response['data'].statusGradeName;
         var $last_tr_table = $('#table-list-student  > tbody:last-child');
         //var $tbody = $table_list_student.find('tbody');
         $('#table-list-student > tbody').empty();
+        let $statusName;
+        for(var i = 0; i < $listStudent.length; i++){
+            Object.entries($statusGradeName).forEach(entry => {
+                const [key, value] = entry;
+                console.log(key, value);
+                if(value == $listStudent[i].status){
+                    $statusName = key;
+                }
+            });
 
-        for(var i = 0; i < $data.length; i++){
             $append = "<tr>";
             $append += "<td>"+(i+1)+"</td>";
-            $append += "<td>"+$data[i].student.id+"</td>";
-            $append += "<td>"+$data[i].student.name+"</td>";
+            $append += "<td>"+$listStudent[i].student.id+"</td>";
+            $append += "<td>"+$listStudent[i].student.name+"</td>";
+            $append += "<td>"+$listStudent[i].grade+"</td>";
+            $append += "<td>"+ $statusName +"</td>";
             $append += "</tr>";
             $($last_tr_table).append($append);
         }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ExamTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,4 +22,6 @@ class Grade extends Model
     public function student(){
         return $this->belongsTo(Student::class);
     }
+
+
 }
