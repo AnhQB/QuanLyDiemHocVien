@@ -22,7 +22,7 @@
                     <div class="panel-group" id="accordion">
                         <form>
                             <label for="csv" href="/" class=" btn btn-success">
-                                Thêm file danh sách điểm sinh viên theo lượt thi
+                                Thêm file danh sách điểm sinh viên
                             </label>
                             <span id="nameFile"></span>
                             <small class="font-italic help-block ">( định dạng tên tệp: "id khoá"_"id ngành"_"id lớp"_"id môn" )</small>
@@ -72,6 +72,6 @@
 @endsection
 @push('js')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="{{asset('js/js_indexGrade.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/js_importGrade.js')}}" type="text/javascript"></script>
 
 @endpush

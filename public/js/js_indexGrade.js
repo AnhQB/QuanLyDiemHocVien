@@ -275,42 +275,6 @@ $(document).ready(function() {
         }
     }
 
-    $('#csv').change(function(event) {
-        var $name = $(this).val().replace(/C:\\fakepath\\/i, '');
-        $('#nameFile').text(': ' + $name);
-
-    });
-
-    $('#submit-file-csv').click(function (event) {
-        var formData = new FormData();
-        formData.append('file', $('#csv')[0].files[0]);
-        formData.append('_token', _token)
-        $.ajax({
-            url: 'student_groups/import-csv',
-            type: 'POST',
-            dataType: 'json',
-            data: formData,
-            async: false,
-            cache: false,
-            processData: false,
-            contentType: false,
-            success: function(response){
-                //console.log(response['data']);
-                $("#msg-success").show();
-                $("#msg-success").html(response['data'].message);
-                $("#msg-success").fadeOut(5000);
-                printListStudent(response['data'].listStudent);
-                //console.log(response['data'].listStudent);
-            },
-            error: function(response){
-                // console.log(response['responseJSON'].data);
-                $("#msg-error").show();
-                $("#msg-error").html(response['responseJSON'].data);
-                $("#msg-error").fadeOut(10000);
-            }
-        })
-    })
-
     function printListStudent(response){
         $('#card-content-bottom').show();
         var $listStudent = response['data'].listStudent;
@@ -320,13 +284,7 @@ $(document).ready(function() {
         $('#table-list-student > tbody').empty();
         let $statusName;
         for(var i = 0; i < $listStudent.length; i++){
-            Object.entries($statusGradeName).forEach(entry => {
-                const [key, value] = entry;
-                console.log(key, value);
-                if(value == $listStudent[i].status){
-                    $statusName = key;
-                }
-            });
+            $statusName = $listStudent[i].status === '1-1' ? "Đạt" :  "Không Đạt";
 
             $append = "<tr>";
             $append += "<td>"+(i+1)+"</td>";

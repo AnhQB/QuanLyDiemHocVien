@@ -128,8 +128,9 @@ Route::group([
     'prefix' => 'grades'
 ], static function (){
     Route::get('/', [GradeController::class, 'index'])->name('index');
-    Route::get('/import-grade', [GradeController::class, 'importGrade'])->name('import_Grade');
     Route::post('/filter', [GradeController::class, 'apiFilter'])->name('api_Filter');
+    Route::get('/import-grade', [GradeController::class, 'importGrade'])->name('import_Grade');
+    Route::post('/import-grade', [GradeController::class, 'storeCSV'])->name('store_csv');
 });
 
 

@@ -200,7 +200,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('student_groups.index')}}">
+                                <a href="{{route('grades.import_Grade')}}">
                                     <span class="sidebar-mini">G2</span>
                                     <span class="sidebar-normal">Import Grade</span>
                                 </a>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\StatusGradeEnum;
+use App\Imports\GradesImport;
 use App\Models\Degree;
 use App\Models\DegreeMajor;
 use App\Models\Grade;
@@ -16,6 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GradeController extends Controller
 {
@@ -128,7 +130,7 @@ class GradeController extends Controller
                                     ->get();
 
                 $list = $this->model
-                    ->selectRaw("grades.student_id, grades.`status`, GROUP_CONCAT(grade SEPARATOR ' | ') AS grade")
+                    ->selectRaw("grades.student_id, GROUP_CONCAT(grades.status SEPARATOR '-') AS status, GROUP_CONCAT(grade SEPARATOR ' | ') AS grade")
                         ->with(['student' => function ($query) use ($major_id, $degree_id) {
                             $query->where([
                                ['major_id', $major_id],
@@ -142,7 +144,6 @@ class GradeController extends Controller
                         ->whereIn('student_id', $listStudentInGroup)
                         ->groupBy([
                             'grades.student_id',
-                            'grades.status'
                         ])
                         ->get();
 
@@ -163,6 +164,28 @@ class GradeController extends Controller
     public function importGrade()
     {
         return view("admin.$this->table.importGrade");
+    }
+
+    public function storeCSV(Request $request)
+    {
+        $file = $request -> file('file');
+        $fileName = $file -> getClientOriginalName();
+        $import = (new GradesImport()) -> fromFileName($fileName);
+
+        try {
+            Excel::import($import, $file);
+        }catch (\Exception $exception){
+            return response()->json([
+                'success' => false,
+                'data' => $exception->getMessage(),
+            ], 400);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $import -> getDataImported(),
+        ]);
+
     }
 
     /**

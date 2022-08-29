@@ -18,7 +18,7 @@
                 <div class="card-header">
                     <h4 class="card-title">Danh sách điểm sinh viên theo lớp</h4>
                     <a href="{{route('grades.import_Grade')}}" class=" btn btn-simple">
-                        Thêm file danh sách điểm sinh viên theo lượt thi
+                        Thêm danh sách điểm sinh viên
                     </a>
                 </div>
                 <form>
