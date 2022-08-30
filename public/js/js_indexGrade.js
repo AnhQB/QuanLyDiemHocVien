@@ -284,11 +284,15 @@ $(document).ready(function() {
         $('#table-list-student > tbody').empty();
         let $statusName;
         for(var i = 0; i < $listStudent.length; i++){
-            $statusName = $listStudent[i].status === '1-1' ? "Đạt" :  "Không Đạt";
+            if($listStudent[i].status.length > 1){
+                $statusName = $listStudent[i].status === '1-1' ? "Đạt" :  "Không Đạt";
+            }else{
+                $statusName = $listStudent[i].status === '1' ? "Đạt" :  "Không Đạt";
+            }
 
             $append = "<tr>";
             $append += "<td>"+(i+1)+"</td>";
-            $append += "<td>"+$listStudent[i].student.id+"</td>";
+            $append += "<td>"+$listStudent[i].student_id+"</td>";
             $append += "<td>"+$listStudent[i].student.name+"</td>";
             $append += "<td>"+$listStudent[i].grade+"</td>";
             $append += "<td>"+ $statusName +"</td>";

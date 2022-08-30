@@ -130,7 +130,7 @@ Route::group([
     Route::get('/', [GradeController::class, 'index'])->name('index');
     Route::post('/filter', [GradeController::class, 'apiFilter'])->name('api_Filter');
     Route::get('/import-grade', [GradeController::class, 'importGrade'])->name('import_Grade');
-    Route::post('/import-grade', [GradeController::class, 'storeCSV'])->name('store_csv');
+    Route::post('/store-grade', [GradeController::class, 'storeCSV'])->name('store_csv');
 });
 
 

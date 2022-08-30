@@ -183,7 +183,10 @@ class GradeController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $import -> getDataImported(),
+            'data' => [
+                'message' => 'Đã thêm file csv thành công',
+                'listStudent' => $import -> getDataImported()
+            ],
         ]);
 
     }

@@ -21,7 +21,6 @@ class GradesImport implements ToArray, WithHeadingRow
         $exam_type = ($arr[3] === 'FE' || $arr[3] === 1) ? 1 : 2;
         $semester_year = $arr[1];
         // if last element
-        $times_exam = 0;
         if(strlen(end($arr)) <= 1){
             $times_exam =  (end($arr) === '') ? 1 : end($arr) ;
         }else{

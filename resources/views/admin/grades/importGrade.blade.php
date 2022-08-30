@@ -25,7 +25,7 @@
                                 Thêm file danh sách điểm sinh viên
                             </label>
                             <span id="nameFile"></span>
-                            <small class="font-italic help-block ">( định dạng tên tệp: "id khoá"_"id ngành"_"id lớp"_"id môn" )</small>
+                            <small class="font-italic help-block ">( định dạng tên tệp: "id môn"_"kỳ học năm"_"kiểu thi"_"mã đề"_"lần thi" )</small>
                             <input type="file" name="csv" id="csv" style="display: none"
                                    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                             >
@@ -50,8 +50,8 @@
                     <table class="table table-striped" id="table-list-student">
                         <thead>
                         <tr>
+                            <th>STT</th>
                             <th>ID sinh viên</th>
-                            <th>Họ và tên</th>
                             <th>Điểm</th>
                         </tr>
                         </thead>
