@@ -20,6 +20,7 @@ class Group extends Model
         'subject_id',
         'degree_id',
         'major_id',
+        'semester_year',
     ];
 
     public function degree(){

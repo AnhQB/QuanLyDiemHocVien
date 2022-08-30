@@ -41,6 +41,10 @@
                     @endforeach
                 </select>
             </div>
+            <div class="form-group">
+                <label>Semester_year</label><br>
+                <input name="semester_year" value="{{$currentSemester}}">
+            </div>
 
         </div>
         <div class="card-footer">

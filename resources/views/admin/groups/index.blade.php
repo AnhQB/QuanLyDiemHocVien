@@ -11,6 +11,7 @@
                     <th>Các Môn</th>
                     <th>Khoá</th>
                     <th>Chuyên Ngành</th>
+                    <th>Kỳ học năm</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,7 @@
                         </td>
                         <td>{{$each -> degree -> name}}</td>
                         <td>{{$each -> major -> name}}</td>
+                        <td>{{$each -> semester_year}}</td>
                     </tr>
                 @endforeach
                 </tbody>

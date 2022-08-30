@@ -10,6 +10,7 @@ use App\Models\Group;
 use App\Models\Major;
 use App\Models\Subject;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 
@@ -34,7 +35,7 @@ class GroupController extends Controller
     public function index()
     {
         $data = $this->model
-            ->selectRaw( "groups.id, GROUP_CONCAT(subjects.name SEPARATOR ' | ' ) AS subject, groups.degree_id,groups.major_id")
+            ->selectRaw( "groups.id, GROUP_CONCAT(subjects.name SEPARATOR ' | ' ) AS subject, groups.degree_id,groups.major_id, groups.semester_year")
             ->join('subjects','subjects.id','groups.subject_id')
             ->with([
                 'degree',
@@ -44,6 +45,7 @@ class GroupController extends Controller
                 'groups.id',
                 'groups.degree_id',
                 'groups.major_id',
+                'groups.semester_year',
                 ])
             ->paginate(10);
 
@@ -58,10 +60,20 @@ class GroupController extends Controller
         $degrees = Degree::query()->pluck('name','id')->toArray();
         $majors = Major::query()->pluck('name','id')->toArray();
 
+        $currentMonth = Carbon::now()->format('M');
+        if($currentMonth >= 12 && $currentMonth < 4){
+            $currentSemester = 'Spring' . Carbon::now()->format('Y');
+        }elseif($currentMonth >= 4 && $currentMonth < 8){
+            $currentSemester = 'Summer' . Carbon::now()->format('Y');
+        }else{
+            $currentSemester = 'Fall' . Carbon::now()->format('Y');
+        }
+
         return view("admin.$this->table.create", [
             'subjects' => $subjects,
             'degrees' => $degrees,
             'majors' => $majors,
+            'currentSemester' => $currentSemester,
         ]);
     }
 
