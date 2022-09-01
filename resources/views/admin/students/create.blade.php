@@ -72,6 +72,11 @@
                         </option>
                     @endforeach
                 </select>
+                <br>
+                <label class="control-label">
+                    Mật khẩu<star>*</star>
+                </label>
+                <input type="password" name="password">
             </div>
 
             <div class="category"><star>*</star> Required fields</div>

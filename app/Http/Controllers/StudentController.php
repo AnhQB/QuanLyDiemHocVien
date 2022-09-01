@@ -51,17 +51,17 @@ class StudentController extends Controller
         ]);
     }
 
-    public function store(StoreStudentRequest $request)
+    public function store(StoreStudentRequest $request): \Illuminate\Http\RedirectResponse
     {
         $student = new Student();
-        $hashed_random_password = Hash::make(Str::random(8));
+        $hashed_random_password = Hash::make($request->password);
         $student = $this -> model -> create([
             'name' => $request->name,
             'date_of_birth' => $request->date_of_birth,
             'gender' => $request->gender,
             'phone' => $request->phone,
             'address' => $request->address,
-            'password' => md5($hashed_random_password),
+            'password' => $hashed_random_password,
             'semester_major' => $request->semester_major,
             'major_id' => $request->major_id,
             'degree_id' => $request->degree_id,
@@ -77,7 +77,7 @@ class StudentController extends Controller
 
         return redirect()
             -> route("$this->table.index")
-            -> with('success','Đã thêm thành công');
+            -> with('success',"Đã thêm tài khoản thành công có email: $email và id: $student->id");
     }
 
 

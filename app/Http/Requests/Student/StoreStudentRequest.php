@@ -62,7 +62,8 @@ class StoreStudentRequest extends FormRequest
                 Rule::Unique('students','email'),
             ],
             'password' => [
-                'nullable'
+                'bail',
+                'required'
             ],
             'semester_major' => [
                 'bail',
