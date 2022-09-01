@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DegreeController;
 use App\Http\Controllers\DegreeMajorController;
@@ -133,7 +134,9 @@ Route::group([
     Route::post('/store-grade', [GradeController::class, 'storeCSV'])->name('store_csv');
 });
 
-
+Route::get('/login',[AuthController::class, 'login'])->name('login');
+Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
+Route::post('/login',[AuthController::class, 'processLogin'])->name('process_login');
 
 
 

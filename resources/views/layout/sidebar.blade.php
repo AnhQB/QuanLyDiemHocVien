@@ -20,7 +20,7 @@
             <div class="info">
                 <a data-toggle="collapse" href="#collapseExample" class="collapsed">
 	                        <span>
-								Chet Faker
+								{{session()->get('name')}} - {{session()->get('id')}}
 		                        <b class="caret"></b>
 							</span>
                 </a>
@@ -35,15 +35,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#edit">
-                                <span class="sidebar-mini">Ep</span>
-                                <span class="sidebar-normal">Edit Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#settings">
+                            <a href="{{route('logout')}}">
                                 <span class="sidebar-mini">S</span>
-                                <span class="sidebar-normal">Settings</span>
+                                <span class="sidebar-normal">Log out</span>
                             </a>
                         </li>
                     </ul>

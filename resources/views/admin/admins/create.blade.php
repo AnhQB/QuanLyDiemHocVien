@@ -22,7 +22,7 @@
                 <label class="control-label">
                     Số điện thoại<star>*</star>
                 </label>
-                <input  class="form-control" name="phone" type="tel" required="true" >
+                <input  class="form-control" name="phone" type="tel" required="true">
             </div>
 
             <div class="category"><star>*</star> Required fields</div>
