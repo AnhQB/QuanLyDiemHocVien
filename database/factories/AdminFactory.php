@@ -13,12 +13,19 @@ class AdminFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->firstName . ' ' . $this->faker->lastName;
+        $nameEngTrim = trim($this->stripAccents($name), ' ') ;
+
         return [
-            'name'=>$this->faker->firstName . ' ' . $this->faker->lastName,
+            'name'=> $name,
             'gender'=>$this->faker->boolean,
             'phone'=>$this->faker->phoneNumber,
-            'email'=>$this->faker->email,
+            'email'=> $nameEngTrim . "_admin@gmail.com",
             'password'=>$this->faker->password,
         ];
+    }
+
+    public function stripAccents($str) {
+        return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
     }
 }
