@@ -13,6 +13,9 @@ use PhpParser\Node\Expr\Cast\Object_;
 class AuthController extends Controller
 {
     public function login(){
+        if(session()->has('level')){
+            return back();
+        }
         return view("login");
     }
 
