@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 class ManagerFactory extends Factory
 {
@@ -15,14 +16,14 @@ class ManagerFactory extends Factory
     {
         $name = $this->faker->firstName . ' ' . $this->faker->lastName;
         $nameEngTrim = trim($this->stripAccents($name), ' ') ;
-
+        $password = "manager";
         return [
             'name'=>$name,
             'gender'=>$this->faker->boolean,
             'phone'=>$this->faker->phoneNumber,
             'address'=>$this->faker->address,
             'email'=>$nameEngTrim . "_manager@gmail.com",
-            'password'=>$this->faker->password,
+            'password'=> Hash::make($password),
         ];
     }
 

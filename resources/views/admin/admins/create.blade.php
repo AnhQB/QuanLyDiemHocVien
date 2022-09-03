@@ -23,6 +23,11 @@
                     Số điện thoại<star>*</star>
                 </label>
                 <input  class="form-control" name="phone" type="tel" required="true">
+                <br>
+                <label class="control-label">
+                    Mật khẩu<star>*</star>
+                </label>
+                <input  class="form-control" name="password" type="password" required="true">
             </div>
 
             <div class="category"><star>*</star> Required fields</div>

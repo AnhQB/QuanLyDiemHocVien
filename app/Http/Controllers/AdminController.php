@@ -48,12 +48,12 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
-        $hashed_random_password = Hash::make(Str::random(8));
+        $hashed_random_password = Hash::make($request->password);
         $admin = $this -> model -> create([
             'name' => $request->name,
             'gender' => $request->gender,
             'phone' => $request->phone,
-            'password' => md5($hashed_random_password),
+            'password' => $hashed_random_password,
         ]);
 
         $email = str_replace(' ', '', $admin -> name) . $admin -> id . "_admin@gmail.com";

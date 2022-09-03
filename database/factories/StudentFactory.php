@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Degree;
 use App\Models\Major;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 class StudentFactory extends Factory
 {
@@ -15,6 +16,7 @@ class StudentFactory extends Factory
      */
     public function definition()
     {
+        $password = "123";
         $majors= Major::query()->pluck('id')->toarray();
         $degrees= Degree::query()->pluck('id')->toarray();
         $degree = $this -> faker -> randomElement($degrees);
@@ -38,7 +40,7 @@ class StudentFactory extends Factory
             'phone' => $this -> faker -> phoneNumber,
             'address' => $this -> faker -> address,
             'email' => $this -> faker -> email,
-            'password' => $this -> faker -> password,
+            'password' => Hash::make($password),
             'semester_major' => $semester,
             'major_id' => $this -> faker -> randomElement($majors)  ,
             'degree_id' => $degree,
