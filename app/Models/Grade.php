@@ -20,7 +20,7 @@ class Grade extends Model
         'status',
     ];
 
-    public function subject_id()
+    public function subject()
     {
         return $this->belongsTo(Subject::class, 'subject_id');
     }

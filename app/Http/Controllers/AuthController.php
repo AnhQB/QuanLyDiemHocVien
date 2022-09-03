@@ -40,7 +40,6 @@ class AuthController extends Controller
 
         try {
             $account = null;
-            $level = 0;
             $error = 1;
             switch ($level){
                 case 0://student
@@ -56,7 +55,6 @@ class AuthController extends Controller
                             ['email', $email],
                         ])
                         ->firstOrFail();
-                    $level = 1;
                     break;
                 case 2: //admin
                     $account = Admin::query()
@@ -64,7 +62,7 @@ class AuthController extends Controller
                             ['email', $email],
                         ])
                         ->firstOrFail();
-                    $level = 2;
+
             }
             if(strlen($password) !== 60 && !preg_match('/^\$2y\$/', $password )){
                 if(Hash::check($password, $account->password)){
@@ -93,7 +91,7 @@ class AuthController extends Controller
                 ]);
         }
         return redirect()
-            ->route('dashboards');
+            ->route('home');
     }
 
     public function logout(){

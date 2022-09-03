@@ -88,7 +88,7 @@ class StudentController extends Controller
             ->with('degree')
             ->where('id', $id)
             ->first();
-        return view("admin.$this->table.show",[
+        return view("detail_profile",[
             'student' => $student,
         ]);
     }

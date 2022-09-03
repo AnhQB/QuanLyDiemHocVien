@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DegreeController;
 use App\Http\Controllers\DegreeMajorController;
 use App\Http\Controllers\GradeController;
@@ -14,7 +14,6 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentGroupController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Middleware\CheckLoginMiddleware;
-use App\Models\Degree;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +33,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login',[AuthController::class, 'login'])->name('login');
 Route::post('/login',[AuthController::class, 'processLogin'])->name('process_login');
-;
 
 Route::middleware([CheckLoginMiddleware::class])->group(function (){
 
@@ -56,7 +54,7 @@ Route::middleware([CheckLoginMiddleware::class])->group(function (){
 
 
     Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
-    Route::get('/', [DashboardController::class, 'index'])->name('welcome');
+    Route::get('/', [HomeController::class, 'welcome'])->name('home');
 
     Route::group([
         'as' => 'subjects.',
@@ -159,6 +157,7 @@ Route::middleware([CheckLoginMiddleware::class])->group(function (){
         Route::post('/filter', [GradeController::class, 'apiFilter'])->name('api_Filter');
         Route::get('/import-grade', [GradeController::class, 'importGrade'])->name('import_Grade');
         Route::post('/store-grade', [GradeController::class, 'storeCSV'])->name('store_csv');
+        Route::get('/student-grade/{id}', [GradeController::class, 'viewStudentGrade'])->name('student_grade');
     });
 
 

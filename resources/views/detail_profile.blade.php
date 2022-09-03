@@ -56,8 +56,9 @@
             </div>
         </div>
         </div>
-        <div class="row-cols-1">
-            <a href="{{route('students.index')}}">Back to index</a>
-        </div>
-
+        @if(session()->get('level') != 0)
+            <div class="row-cols-1">
+                <a href="{{route('students.index')}}">Back to index</a>
+            </div>
+        @endif
 @endsection

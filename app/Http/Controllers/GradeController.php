@@ -12,12 +12,14 @@ use App\Http\Requests\UpdateGradeRequest;
 use App\Models\Group;
 use App\Models\Major;
 use App\Models\MajorSubject;
+use App\Models\Student;
 use App\Models\StudentGroup;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Maatwebsite\Excel\Facades\Excel;
+use phpDocumentor\Reflection\Types\Array_;
 
 class GradeController extends Controller
 {
@@ -192,9 +194,63 @@ class GradeController extends Controller
     }
 
 
-    public function viewGradeStudent(Request $request)
+    public function viewStudentGrade(Request $request)
     {
+        //request include: id student
+        //check id in session is student or not
+        if(Student::query()
+            ->where(
+                'id', session()->get('id')
+            )
+            ->exists()
+        ){
+        //if student exist: check id(request) != id(session) return back
+            if($request->id != session()->get('id')){
+                return back();
+            }
+        }
 
+        $student_id = $request->id;
+        //else get data grade
+        $semester_years = $this->model
+            ->select('semester_year')
+            ->distinct()
+            ->where('student_id', $student_id)
+            ->pluck('semester_year', 'semester_year')
+            ->toArray();
+
+        $semester_year = end($semester_years);
+        $data_grades = $this->model
+            ->select('subject_id')
+            ->distinct()
+            ->with('subject')
+            ->where([
+                ['student_id', $student_id],
+                ['semester_year', $semester_year],
+            ])
+            ->get();
+
+        foreach ($data_grades as $index => $subject){
+            $subject_id = $subject -> subject_id;
+
+            $grades = $this->model
+                ->select(['exam_type', 'grade', 'time', 'status'])
+                ->where([
+                    ['student_id', $student_id],
+                    ['subject_id', $subject_id],
+                    ['semester_year', $semester_year],
+                ])
+                ->get()
+                ->toArray();
+            $data_grades[$index][$subject_id] = $grades;
+        }
+        //dd($data_grades);
+        //$item[$item->subject_id] lay diem
+        return view('student_grade',[
+            'semester_years' => $semester_years,
+            'data_grades' => $data_grades,
+            'current_semester' => $semester_year
+        ]);
     }
     //
 
