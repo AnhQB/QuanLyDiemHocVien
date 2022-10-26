@@ -28,11 +28,13 @@ class AuthController extends Controller
         $emailAdmin = "_admin@gmail.com";
         $emailManager = "_manager@gmail.com";
 
-        $offsetAd = strlen($email) - strlen($emailAdmin);
-        $offsetManager = strlen($email) - strlen($emailManager);
-        if(strpos($email, $emailAdmin, $offsetAd) !== false){
+        // $offsetAd = strlen($email) - strlen($emailAdmin);
+        // $offsetManager = strlen($email) - strlen($emailManager);
+        $offsetAd = strpos($email, $emailAdmin);
+        $offsetManager = strpos($email, $emailManager);
+        if(strpos($email, $emailAdmin, $offsetAd-1) !== false){
             $level = 2; // is admin
-        }elseif (strpos($email, $emailManager, $offsetManager) !== false){
+        }elseif (strpos($email, $emailManager, $offsetManager-1) !== false){
             $level = 1; //is manager
         }else{
             $level = 0; //is student

@@ -14,9 +14,9 @@ class MajorController extends Controller
     private Builder $model;
     private string $table;
 
-    public function __construct()
+    public function __construct(Major $major)
     {
-        $this->model = (new Major())->query();
+        $this->model = $major->query();
         $this->table = (new Major())->getTable();
 
         $routename = Route::currentRouteName();
@@ -47,7 +47,7 @@ class MajorController extends Controller
         $this->model->create($request->except('_token'));
         return redirect()
             ->route("$this->table.index")
-            -> with('success','Đã thêm thành công');;
+            ->      with('success','Đã thêm thành công');
     }
 
     /**

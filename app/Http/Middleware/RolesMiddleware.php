@@ -36,6 +36,8 @@ class RolesMiddleware
                 return $next($request);
             }
         }
-        return back();
+        return back()
+        -> with('error','Bạn không có quyền truy cập vào đây');
+        // \Redirect::back()->with('error', 'Bạn không có quyền truy cập vào đây');
     }
 }

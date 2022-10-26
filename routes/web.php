@@ -37,18 +37,134 @@ Route::post('/login',[AuthController::class, 'processLogin'])->name('process_log
 Route::middleware([CheckLoginMiddleware::class])->group(function (){
 
     Route::middleware(['middleware' => 'roles:admin'])->group(function (){
-
+        
     });
 
     Route::middleware(['middleware' => 'roles:manager'])->group(function (){
+         Route::group([
+            'as' => 'curriculums.',
+            'prefix' => 'curriculums'
+        ], static function (){
+            Route::post('/import-csv', [MajorSubjectController::class, 'importCsv'])->name('import_CSV');
+        });
+
+        Route::group([
+            'as' => 'student_groups.',
+            'prefix' => 'student_groups'
+        ], static function (){
+            Route::post('/import-csv', [StudentGroupController::class, 'importCsv'])->name('import_CSV');
+        });
+
+        Route::group([
+            'as' => 'grades.',
+            'prefix' => 'grades'
+        ], static function (){
+            Route::get('/import-grade', [GradeController::class, 'importGrade'])->name('import_Grade');
+            Route::post('/store-grade', [GradeController::class, 'storeCSV'])->name('store_csv');
+        });
 
     });
 
-    Route::middleware(['middleware' => 'roles:student'])->group(function (){
+    Route::middleware(['middleware' => 'roles:admin,manager'])->group(function (){
 
-    });
+        Route::group([
+            'as' => 'subjects.',
+            'prefix' => 'subjects'
+        ], static function (){
+            Route::get('/', [SubjectController::class, 'index'])->name('index');
+            Route::get('/create', [SubjectController::class, 'create'])->name('create');
+            Route::post('/create', [SubjectController::class, 'store'])->name('store');
+        });
 
-    Route::middleware(['middleware' => 'roles:admin, manager'])->group(function (){
+        Route::group([
+            'as' => 'degrees.',
+            'prefix' => 'degrees'
+        ], static function (){
+            Route::get('/', [DegreeController::class, 'index'])->name('index');
+            Route::get('/create', [DegreeController::class, 'create'])->name('create');
+            Route::post('/create', [DegreeController::class, 'store'])->name('store');
+        });
+
+        Route::group([
+            'as' => 'majors.',
+            'prefix' => 'majors'
+        ], static function (){
+            Route::get('/', [MajorController::class, 'index'])->name('index');
+            Route::get('/create', [MajorController::class, 'create'])->name('create');
+            Route::post('/create', [MajorController::class, 'store'])->name('store');
+        });
+
+        Route::group([
+            'as' => 'students.',
+            'prefix' => 'students'
+        ], static function (){
+            Route::get('/', [StudentController::class, 'index'])->name('index');
+            Route::get('/create', [StudentController::class, 'create'])->name('create');
+            Route::get('/show/{id}', [StudentController::class, 'show'])->name('show');
+            Route::post('/create', [StudentController::class, 'store'])->name('store');
+        });
+
+        Route::group([
+            'as' => 'groups.',
+            'prefix' => 'groups'
+        ], static function (){
+            Route::get('/', [GroupController::class, 'index'])->name('index');
+            Route::get('/create', [GroupController::class, 'create'])->name('create');
+            Route::post('/create', [GroupController::class, 'store'])->name('store');
+        });
+
+        Route::group([
+            'as' => 'managers.',
+            'prefix' => 'managers'
+        ], static function (){
+            Route::get('/', [ManagerController::class, 'index'])->name('index');
+            Route::get('/create', [ManagerController::class, 'create'])->name('create');
+            Route::post('/create', [ManagerController::class, 'store'])->name('store');
+        });
+
+        Route::group([
+            'as' => 'admins.',
+            'prefix' => 'admins'
+        ], static function (){
+            Route::get('/', [AdminController::class, 'index'])->name('index');
+            Route::get('/create', [AdminController::class, 'create'])->name('create');
+            Route::post('/create', [AdminController::class, 'store'])->name('store');
+        });
+
+        Route::group([
+            'as' => 'degree_majors.',
+            'prefix' => 'degree_majors'
+        ], static function (){
+            Route::get('/', [DegreeMajorController::class, 'index'])->name('index');
+            Route::get('/create', [DegreeMajorController::class, 'create'])->name('create');
+            Route::post('/create', [DegreeMajorController::class, 'store'])->name('store');
+        });
+
+        Route::group([
+            'as' => 'curriculums.',
+            'prefix' => 'curriculums'
+        ], static function (){
+            Route::get('/', [MajorSubjectController::class, 'index'])->name('index');
+            Route::get('/show/{majorSubject}', [MajorSubjectController::class, 'show'])->name('show');
+            Route::post('/create', [MajorSubjectController::class, 'store'])->name('store');
+        });
+
+        Route::group([
+            'as' => 'student_groups.',
+            'prefix' => 'student_groups'
+        ], static function (){
+            Route::get('/', [StudentGroupController::class, 'index'])->name('index');
+            Route::post('/filter', [StudentGroupController::class, 'apiFilter'])->name('api_Filter');
+        });
+
+        Route::group([
+            'as' => 'grades.',
+            'prefix' => 'grades'
+        ], static function (){
+            Route::get('/', [GradeController::class, 'index'])->name('index');
+            Route::post('/filter', [GradeController::class, 'apiFilter'])->name('api_Filter');
+            Route::get('/student-grade/{id}', [GradeController::class, 'viewStudentGrade'])->name('student_grade');
+        });
 
     });
 
@@ -57,109 +173,19 @@ Route::middleware([CheckLoginMiddleware::class])->group(function (){
     Route::get('/', [HomeController::class, 'welcome'])->name('home');
 
     Route::group([
-        'as' => 'subjects.',
-        'prefix' => 'subjects'
+        'as' => 'grades.',
+        'prefix' => 'grades'
     ], static function (){
-        Route::get('/', [SubjectController::class, 'index'])->name('index');
-        Route::get('/create', [SubjectController::class, 'create'])->name('create');
-        Route::post('/create', [SubjectController::class, 'store'])->name('store');
+        Route::get('/student-grade/{id}', [GradeController::class, 'viewStudentGrade'])->name('student_grade');
     });
 
-
-    Route::group([
-        'as' => 'degrees.',
-        'prefix' => 'degrees'
-    ], static function (){
-        Route::get('/', [DegreeController::class, 'index'])->name('index');
-        Route::get('/create', [DegreeController::class, 'create'])->name('create');
-        Route::post('/create', [DegreeController::class, 'store'])->name('store');
-    });
-
-    Route::group([
-        'as' => 'majors.',
-        'prefix' => 'majors'
-    ], static function (){
-        Route::get('/', [MajorController::class, 'index'])->name('index');
-        Route::get('/create', [MajorController::class, 'create'])->name('create');
-        Route::post('/create', [MajorController::class, 'store'])->name('store');
-    });
 
     Route::group([
         'as' => 'students.',
         'prefix' => 'students'
     ], static function (){
-        Route::get('/', [StudentController::class, 'index'])->name('index');
-        Route::get('/create', [StudentController::class, 'create'])->name('create');
         Route::get('/show/{id}', [StudentController::class, 'show'])->name('show');
-        Route::post('/create', [StudentController::class, 'store'])->name('store');
     });
-
-    Route::group([
-        'as' => 'groups.',
-        'prefix' => 'groups'
-    ], static function (){
-        Route::get('/', [GroupController::class, 'index'])->name('index');
-        Route::get('/create', [GroupController::class, 'create'])->name('create');
-        Route::post('/create', [GroupController::class, 'store'])->name('store');
-    });
-
-    Route::group([
-        'as' => 'managers.',
-        'prefix' => 'managers'
-    ], static function (){
-        Route::get('/', [ManagerController::class, 'index'])->name('index');
-        Route::get('/create', [ManagerController::class, 'create'])->name('create');
-        Route::post('/create', [ManagerController::class, 'store'])->name('store');
-    });
-
-    Route::group([
-        'as' => 'admins.',
-        'prefix' => 'admins'
-    ], static function (){
-        Route::get('/', [AdminController::class, 'index'])->name('index');
-        Route::get('/create', [AdminController::class, 'create'])->name('create');
-        Route::post('/create', [AdminController::class, 'store'])->name('store');
-    });
-
-    Route::group([
-        'as' => 'degree_majors.',
-        'prefix' => 'degree_majors'
-    ], static function (){
-        Route::get('/', [DegreeMajorController::class, 'index'])->name('index');
-        Route::get('/create', [DegreeMajorController::class, 'create'])->name('create');
-        Route::post('/create', [DegreeMajorController::class, 'store'])->name('store');
-    });
-
-    Route::group([
-        'as' => 'curriculums.',
-        'prefix' => 'curriculums'
-    ], static function (){
-        Route::get('/', [MajorSubjectController::class, 'index'])->name('index');
-        Route::get('/show/{majorSubject}', [MajorSubjectController::class, 'show'])->name('show');
-        Route::post('/create', [MajorSubjectController::class, 'store'])->name('store');
-        Route::post('/import-csv', [MajorSubjectController::class, 'importCsv'])->name('import_CSV');
-    });
-
-    Route::group([
-        'as' => 'student_groups.',
-        'prefix' => 'student_groups'
-    ], static function (){
-        Route::get('/', [StudentGroupController::class, 'index'])->name('index');
-        Route::post('/filter', [StudentGroupController::class, 'apiFilter'])->name('api_Filter');
-        Route::post('/import-csv', [StudentGroupController::class, 'importCsv'])->name('import_CSV');
-    });
-
-    Route::group([
-        'as' => 'grades.',
-        'prefix' => 'grades'
-    ], static function (){
-        Route::get('/', [GradeController::class, 'index'])->name('index');
-        Route::post('/filter', [GradeController::class, 'apiFilter'])->name('api_Filter');
-        Route::get('/import-grade', [GradeController::class, 'importGrade'])->name('import_Grade');
-        Route::post('/store-grade', [GradeController::class, 'storeCSV'])->name('store_csv');
-        Route::get('/student-grade/{id}', [GradeController::class, 'viewStudentGrade'])->name('student_grade');
-    });
-
 
 });
 

@@ -29,10 +29,12 @@
                 <div class="collapse" id="collapseExample">
                     <ul class="nav">
                         <li>
-                            <a href="{{route('students.show',session()->get('id'))}}">
-                                <span class="sidebar-mini">Mp</span>
-                                <span class="sidebar-normal">My Profile</span>
-                            </a>
+                            @if(session()->get('level') === 0)
+                                <a href="{{route('students.show',session()->get('id'))}}">
+                                    <span class="sidebar-mini">Mp</span>
+                                    <span class="sidebar-normal">My Profile</span>
+                                </a>
+                            @endif
                         </li>
                         <li>
                             <a href="{{route('logout')}}">

@@ -15,7 +15,8 @@ class ManagerFactory extends Factory
     public function definition()
     {
         $name = $this->faker->firstName . ' ' . $this->faker->lastName;
-        $nameEngTrim = trim($this->stripAccents($name), ' ') ;
+        // $nameEngTrim = trim($this->stripAccents($name), ' ') ;
+        $nameEngTrim = str_replace(' ', '', $this->stripAccents($name));
         $password = "manager";
         return [
             'name'=>$name,
@@ -28,6 +29,6 @@ class ManagerFactory extends Factory
     }
 
     public function stripAccents($str) {
-        return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+        return strtr(utf8_decode($str), utf8_decode('àáâãäảằảặçèéêëìíîïịñòóôõöùúûüưứýỳÿỹÀÁÂÃÄÇĐÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaaaaaceeeeiiiiinooooouuuuuuyyyyAAAAACDEEEEIIIINOOOOOUUUUY');
     }
 }

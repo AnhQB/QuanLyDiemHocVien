@@ -84,7 +84,7 @@ class MajorSubjectController extends Controller
             'subjects' => $subjects,
             'currentDegree' => $currentDegree,
             'currentMajor' => $currentMajor,
-            'data' => $data,
+            'data' => $data
         ]);
     }
 

@@ -229,27 +229,63 @@ class GradeController extends Controller
                 ['semester_year', $semester_year],
             ])
             ->get();
-
+        $data_average = [];
         foreach ($data_grades as $index => $subject){
             $subject_id = $subject -> subject_id;
 
-            $grades = $this->model
+            $grades = (new Grade())->query()
                 ->select(['exam_type', 'grade', 'time', 'status'])
                 ->where([
                     ['student_id', $student_id],
                     ['subject_id', $subject_id],
                     ['semester_year', $semester_year],
+                    ['grade', '!=', null],
                 ])
                 ->get()
                 ->toArray();
             $data_grades[$index][$subject_id] = $grades;
+
+
+            if(count($grades) === 1){
+                if(reset($grades)['grade'] < 5){
+                    $data_average[$subject_id]['status'] = "NOT PASSED";
+                }else{
+                    $data_average[$subject_id]['status'] = "PASSED";
+                }
+                $data_average[$subject_id]['average'] = reset($grades)['grade'];
+            }else{
+                $fe = 0;
+                $pe = 0;
+                $status = '';
+                foreach ($grades as $grade){
+                    if($grade['exam_type'] ===  1){
+                       $fe = $grade['grade'] * 60 / 100;
+                    }else{
+                        $pe = $grade['grade'] * 40 / 100;
+                        if($grade['grade'] < 5){
+                            $status = "NOT PASSED";
+                        }
+                    }
+                }
+                $average = $fe + $pe;
+                if($status != "NOT PASSED"){
+                    if($average >= 5){
+                        $status = "PASSED";
+                    }else{
+                        $status = "NOT PASSED";
+                    }
+                }
+                $data_average[$subject_id]['average'] = $average;
+                $data_average[$subject_id]['status'] = $status;
+            }
         }
-        //dd($data_grades);
+
         //$item[$item->subject_id] lay diem
         return view('student_grade',[
             'semester_years' => $semester_years,
             'data_grades' => $data_grades,
-            'current_semester' => $semester_year
+            'current_semester' => $semester_year,
+            'data_average' => $data_average,
         ]);
     }
     //
